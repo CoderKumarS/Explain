@@ -3,10 +3,9 @@ var router = express.Router();
 const userModel = require('./users');
 const postModel = require('./post');
 const projectModel = require('./project');
+const commentModel = require('./comment');
 const passport = require('passport');
-
 const upload = require('./multer');
-
 const localStrategy = require("passport-local");
 // for login
 passport.use(new localStrategy(userModel.authenticate()));
@@ -14,11 +13,27 @@ passport.use(new localStrategy(userModel.authenticate()));
 router.get('/', function (req, res, next) {
   res.render('index', { error: req.flash('error') });
 });
-
-router.get('/chat', function (req, res, next) {
-  res.render('chat');
+router.get('/chat',isLoggedIn, async function (req, res, next) {
+  const user = await userModel.findOne({username: req.session.passport.user})
+  const posts = await postModel.find()
+  .populate("user")
+  res.render('chat', {user,posts});
 });
+router.get('/chat/:url',isLoggedIn, async function (req, res, next) {
+  try {
+    const regex = new RegExp(`^${req.params.url}`, 'i');
+    const post = await postModel.findOne({ postText: regex });
+    
+    // Fetch comments associated with the post._id
+    const user = await userModel.findOne({ posts: post._id });
+    const comments = await commentModel.find({ question: post._id });
 
+    res.json({ post, comments, user });
+  } catch (error) {
+    console.error('Error fetching chat:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 router.post('/projectUpload', isLoggedIn, upload.single("projectPic"), async function (req, res, next) {
   // access the uploaded file details via req.file
   if (!req.file) {
@@ -35,22 +50,32 @@ router.post('/projectUpload', isLoggedIn, upload.single("projectPic"), async fun
   await user.save();
   res.redirect("/profile");
 });
-router.post('/upload', isLoggedIn, upload.single("file"), async function (req, res, next) {
-  // access the uploaded file details via req.file
-  if (!req.file) {
-    return res.status(404).send('No files were uploaded.');
-  }
+router.post('/upload', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user });
   const post = await postModel.create({
-    image: req.file.filename,
-    postText: req.body.filecaption,
+    postText: req.body.topic,
+    question: req.body.question,
     user: user._id,
   });
   user.posts.push(post._id);
   await user.save();
   res.redirect("/profile");
 });
-
+router.post('/comments', isLoggedIn, async function (req, res, next) {
+  const { postId, comment } = req.body;
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  const newComment = await commentModel.create({
+    commentText: comment,
+    question: postId,
+    user: user._id,
+  });
+  user.comments.push(newComment._id);
+  await user.save();
+  const post = await postModel.findById(postId);
+  post.comments.push(newComment._id);
+  await post.save();
+  res.redirect("/chat"); // Redirect back to the chat page
+});
 router.get('/profile', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({
     username: req.session.passport.user
@@ -76,7 +101,6 @@ router.post("/login", passport.authenticate("local", {
 }), (req, res) => {
 
 })
-
 router.get("/logout", (req, res) => {
   req.logOut((err) => {
     if (err) {
@@ -85,7 +109,6 @@ router.get("/logout", (req, res) => {
     res.redirect('/');
   });
 })
-
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/");

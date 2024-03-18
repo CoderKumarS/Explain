@@ -31,6 +31,7 @@
                 <li data-target="history">Projects</li>
                 <li data-target="contact">Contact</li>
                 <li data-target="posts">Upload</li>
+                <li><a href="/chat">Chats</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
             <div id="intro" class="tab-content active">
@@ -85,9 +86,9 @@
                 </form>
             </div>
             <div id="posts" class="tab-content">
-                <form action="/upload" method="post" enctype="multipart/form-data">
-                    <input type="text" name="filecaption" placeholder="Some Caption">
-                    <input type="file" name="file">
+                <form action="/upload" method="post">
+                    <input type="text" name="topic" placeholder="Topic">
+                    <input type="text" name="question" placeholder="Question">
                     <button type="submit">Submit</button>
                 </form>
             </div>
@@ -96,17 +97,14 @@
     <div class="container p-0 w-75">
         <div class="row m-1 justify-content-center">
             <% user.posts.forEach(function (post){%>
-                <div class="card p-0 m-3 justify-content-center" style="width: 18rem;">
-                    <img src="/images/uploads/<%=post.image%>" class="card-img-top" alt="...">
+                <div class="card p-0 mb-2">
+                    <h5 class="card-header"><%=post.postText%></h5>
                     <div class="card-body">
-                        <h5 class="card-title">
-                            <%=post.postText%>
-                        </h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h5 class="card-title"><%=post.question%></h5>
+                      <p class="card-text"><%=post.createdAt%></p>
+                      <a href="/chat/" class="btn btn-primary">Go somewhere</a>
                     </div>
-                </div>
+                  </div>
                 <%})%>
         </div>
     </div>

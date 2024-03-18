@@ -19,6 +19,10 @@ const userSchema= new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:'Project',
   }],
+  comments:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Comment',
+  }],
   profile:{
     type: String,
   },
@@ -35,12 +39,3 @@ const userSchema= new mongoose.Schema({
 userSchema.plugin(plm);
 
 module.exports= mongoose.model('User',userSchema);
-// var express = require('express');
-// var router = express.Router();
-
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-// module.exports = router;

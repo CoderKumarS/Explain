@@ -7,11 +7,12 @@
 
 * {
   box-sizing: border-box;
+  transition-duration: 0.25s;
 }
 
 body {
   font-family: var(--font);
-  background: url("https://lh3.googleusercontent.com/blogger_img_proxy/AEn0k_u8lmZoQVINx2qE9s5TXryuXp_82ELQC932XKxq8pfqCMLgnKXj6vfm3AJJQHcE1OFyYhqDQ7mpy_IQHKfSC47cDYwczTdpY6ciUUQaTPHXL5aH9AeyuTaWW5jiH4dpHamVP8wg-uUrJL7i4R0YSd8hqQ=w919-h516-p-k-no-nu");
+  background: url("https://4kwallpapers.com/images/walls/thumbs_3t/12662.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -83,6 +84,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .cover .profile-pic img {
