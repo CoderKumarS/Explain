@@ -5,11 +5,24 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressSession = require('express-session');
 const flash = require('connect-flash');
+const http = require('http'); // Import http module
+const socketIO = require('socket.io'); // Import Socket.IO
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
 var app = express();
+
+// Create an HTTP server using the Express application
+var server = http.createServer(app);
+
+// Attach Socket.IO to the HTTP server
+var io = socketIO(server);
+
+// Now you can use 'io' to listen for socket connections
+io.on('connection', (socket) => {
+  console.log('A user connected');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,4 +65,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {app: app, server: server}; // Export the server along with the app

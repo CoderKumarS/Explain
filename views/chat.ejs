@@ -10,6 +10,15 @@
 </head>
 
 <body>
+    <!-- Search area that will be shown when the input is clicked -->
+    <div id="searchArea" style="display: none;">
+        <h1 onclick="closeSearchArea()"><i class="fa-solid fa-xmark"></i></h1>
+        <input id="searchInput" type="text" placeholder="Type to search..." oninput="searchChat()">
+        <div id="searchResults"></div>
+    </div>
+
+    <!-- Results area where the search results will be displayed -->
+
     <div class="sideNav1">
 
         <li class="active">
@@ -32,11 +41,12 @@
                 <i class="fa-solid fa-user-plus"></i>
 
             </div>
-            <div class="SearchInputHolder">
+            <div class="SearchInputHolder"  onclick="showSearchArea()">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input class="searchInput" placeholder="Search For Chat..">
+                <p class="searchInput">Search For Chat...</p>
                 <hr>
             </div>
+
             <% posts.reverse().forEach(function (post){%>
                 <li class="group" onclick="submitForm('<%=post.postText%>')">
                     <div class="avatar overflow-hidden p-0"><img src="/images/uploads/<%=post.user.profile%>" alt=""
@@ -53,7 +63,7 @@
         <section class="Chat">
             <div class="ChatHead">
                 <li class="group">
-                    <div class="avatar"><img src="/images/uploads/aca0e581-63ab-4d43-9baf-1b0445b0188a.jpg" alt="">
+                    <div class="avatar">
                     </div>
                     <p class="GroupName">Topic</p>
                 </li>
@@ -138,6 +148,33 @@
             }
         }
 
+        // function sendComment() {
+        //     const commentInput = document.getElementById("MessageInput").value;
+        //     if (!commentInput.trim()) {
+        //         return; // Don't send empty comments
+        //     }
+        //     axios.post('/comments', {
+        //         postId: postId,
+        //         comment: commentInput
+        //     }).then(function (response) {
+        //         // Handle successful comment submission
+        //         console.log('Comment submitted successfully:', response);
+        //         // Optionally, you can redirect to the same page
+        //         window.location.href = `/chat/${postText}`; // Redirect to chat page
+        //     }).catch(function (error) {
+        //         // Handle error
+        //         console.error('Error submitting comment:', error);
+        //     });
+        // }
+
+    </script>
+    <!-- Add this line to include the Socket.IO client script -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        // Connect to the server
+        var socket = io();
+
         function sendComment() {
             const commentInput = document.getElementById("MessageInput").value;
             if (!commentInput.trim()) {
@@ -149,14 +186,67 @@
             }).then(function (response) {
                 // Handle successful comment submission
                 console.log('Comment submitted successfully:', response);
+
+                // Emit a 'newComment' event to the server
+                socket.emit('newComment', {
+                    postId: postId,
+                    comment: commentInput
+                });
+
                 // Optionally, you can redirect to the same page
-                window.location.href = `/chat/${postText}`; // Redirect to chat page
+                // window.location.href = `/chat/${postText}`; // Redirect to chat page
             }).catch(function (error) {
                 // Handle error
                 console.error('Error submitting comment:', error);
             });
         }
+
+        // Listen for the 'newComment' event from the server
+        socket.on('newComment', function (data) {
+            // Add the new comment to the chat
+            const newComment = `<div class="message you">
+                                    <p class="messageContent">${data.comment}</p>
+                                    <div class="messageDetails">
+                                        <div class="messageTime">3:30 PM</div>
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                </div>`;
+            document.querySelector(".MessageContainer").innerHTML += newComment;
+        });
     </script>
+    <script>
+
+        function closeSearchArea() {
+            document.getElementById('searchArea').style.display = 'none';
+        }
+        function showSearchArea() {
+            document.getElementById('searchArea').style.display = 'flex';
+        }
+        let clut = "";
+        function searchChat() {
+            var input = document.getElementById('searchInput');
+            axios.get(`/search/${input.value}`).then(function (data) {
+                console.log(data.data);
+                data.data.forEach(function (elem) {
+                    clut = "";
+                    clut += `<a href="/users/${elem._id}">
+                            <div>
+                                <div>
+                                    <img src ="/images/uploads/${elem.profile}" alt = "profile">
+                                </div>
+                                <div>
+                                    <h2>${elem.fullname}</h2>
+                                    <p>${elem.username}</p>
+                                </div>
+                            </div>
+                            </a>`;
+                })
+                document.getElementById('searchResults').innerHTML = clut;
+            })
+        }
+
+    </script>
+
 </body>
 
 </html>
