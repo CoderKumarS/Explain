@@ -7,14 +7,17 @@ const commentModel = require('./comment');
 const passport = require('passport');
 const upload = require('./multer');
 const localStrategy = require("passport-local");
-const http = require('http');
-const socketio = require('socket.io');
-const io = socketio(http);
 // for login
 passport.use(new localStrategy(userModel.authenticate()));
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  res.render('main');
+});
+router.get('/app', function (req, res, next) {
   res.render('index', { error: req.flash('error') });
+});
+router.get('/loginapp', function (req, res, next) {
+  res.render('register', { error: req.flash('error') });
 });
 router.get('/chat', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user })
@@ -79,9 +82,10 @@ router.post('/comments', isLoggedIn, async function (req, res, next) {
   await post.save();
 
   // Emit a 'newComment' event with the new comment data
-  io.emit('newComment', { postId, comment });
+  // var io = socketIO('http://localhost:3000');
+  // io.emit('newComment', { postId, comment });
 
-  // res.redirect("/chat"); // Redirect back to the chat page
+  res.redirect("/chat"); // Redirect back to the chat page
 });
 router.get('/profile', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({

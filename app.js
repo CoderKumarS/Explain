@@ -21,9 +21,16 @@ var io = socketIO(server);
 
 // Now you can use 'io' to listen for socket connections
 io.on('connection', (socket) => {
-  console.log('A user connected');
-});
+  console.log('New client connected');
 
+  // Emit a 'newComment' event
+  socket.emit('newComment', {
+      postId: '123',
+      comment: 'This is a new comment'
+  });
+
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

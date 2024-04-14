@@ -1,61 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Login and Registration Form</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+
 </head>
+
 <body>
   <input type="radio" id="loginForm" name="formToggle" checked>
-  <input type="radio" id="registerForm" name="formToggle">
   <input type="radio" id="forgotForm" name="formToggle">
   <div class="wrapper" id="loginFormContent">
-    <form action="/login" method="post">
-      <h1>Login</h1>
-      <% if(error.length>0) { %>
-      <p class="error"><%= error %></p>
-      <% } %>
-      <div class="input-box">
-        <input type="text" placeholder="Username" name="username" required>
+    <div id="container">
+      <div id="left">
+        <h1 id="welcome">Welcome</h1>
+        <p id="lorem">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+          Vivamus sodales eros non arcu pellentesque convallis.<br>
+          Nunc dignissim lectus in malesuada porta.<br>
+          Proin ac erat sed urna congue suscipit.<br>
+          Morbi aliquet eget nisl id ornare.
+        </p>
       </div>
-      <div class="input-box">
-        <input type="password" placeholder="Password" name="password" required>
-      </div>
-      <div class="checkbox1">
-        <label><input type="checkbox">Remember Me</label>
-        <label for="forgotForm">Forgot Password</label>
-      </div>
-      <button type="submit" class="btn">Login</button>
-      <div class="link">
-        <p>Don't have an account? <label for="registerForm">Register</label></p>
-      </div>
-    </form>
-  </div>
-  <div class="wrapper" id="registerFormContent">
-    <form action="/register" method="post" enctype="multipart/form-data">
-      <h1>Register</h1>
-      <div class="input-box">
-        <input type="file" placeholder="Profile" name="profile" required>
-      </div>
-      <div class="input-box">
-        <input type="text" placeholder="Fullname" name="fullname" required>
-      </div>
-      <div class="input-box">
-        <input type="text" placeholder="Username" name="username" required>
-      </div>
-      <div class="input-box">
-        <input type="email" placeholder="Email" name="email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder="Password" name="password" required>
-      </div>
-      <div class="checkbox1">
-        <label><input type="checkbox" required>I agree to terms & conditions</label>
-      </div>
-      <button type="submit" class="btn">Register</button>
-      <div class="link">
-        <p>Already have an account? <label for="loginForm">Login</label></p>
-      </div>
-    </form>
+      <form id="right" action="/login" method="post">
+        <h1 id="login">LogIn</h1><br>
+        <% if(error.length>0) { %>
+          <p class="error">
+            <%= error %>
+          </p>
+          <% } %>
+            <input type="text" class="client-info" name="username" required>
+            <label for="username" id="username">Username</label>
+            <input type="password" name="password" required class="client-info">
+            <label for="password" id="password">Password</label>
+            <label for="forgotForm">Forgot Password</label>
+            <input type="submit" id="submit" class="client-info" value="Submit">
+            <button class="social" id="facebook">Don't have an account? <label><a href="/loginapp">Register</a></label></button>
+            <button class="social" id="google"><label for="forgotForm">Forgot Password</label></button>
+      </form>
+    </div>
   </div>
   <div class="wrapper" id="forgotFormContent">
     <form action="">
@@ -70,5 +53,8 @@
         </div>
     </form>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="/javascripts/index.js"></script>
 </body>
+
 </html>

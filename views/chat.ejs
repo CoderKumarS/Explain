@@ -21,16 +21,12 @@
 
     <div class="sideNav1">
 
-        <li class="active">
-            <a href="/chat" style="text-decoration: none; color: black;">
-                <i class="fa-regular fa-comment-dots"></i>
-            </a>
-        </li>
-        <li><i class="fa-solid fa-phone"></i></li>
-        <li><i class="fa-solid fa-gear"></i></li>
-        <li><i class="fa-solid fa-trash-can"></i></li>
-        <li><i class="fa-regular fa-star"></i></li>
-        <li><a href="/profile" style="text-decoration: none; color: black;"><i class="fa-solid fa-address-book"></i></a>
+        <li><a class="active" href="/chat"><i class="fa-regular fa-comment-dots"></i></a></li>
+        <li><a href="/chat"><i class="fa-solid fa-phone"></i></a></li>
+        <li><a href="/chat"><i class="fa-solid fa-gear"></i></a></li>
+        <li><a href="/chat"><i class="fa-solid fa-trash-can"></i></a></li>
+        <li><a href="/chat"><i class="fa-regular fa-star"></i></a></li>
+        <li><a href="/profile"><i class="fa-solid fa-address-book"></i></a>
         </li>
     </div>
     <main>
@@ -128,16 +124,18 @@
 
                 comments.forEach(function (comm) {
                     clutter += `<div class="message you">
-                                <p class="messageContent">${comm.commentText}</p>
-                                <div class="messageDetails">
-                                    <div class="messageTime">3:30 PM</div>
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-                            </div>`;
+                                    <p class="messageContent">${comm.commentText}</p>
+                                    <div class="messageDetails">
+                                        <div class="messageTime">3:30 PM</div>
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                </div>`;
                 });
 
                 clutter2 = `<li class="group">
-                                <div class="avatar overflow-hidden" style="padding: 0;"><img class ="object-fit-cover p-0" src="/images/uploads/${user.profile}" alt=""></div>
+                                <div class="avatar overflow-hidden" style="padding: 0;">
+                                    <img class ="object-fit-cover p-0" src="/images/uploads/${user.profile}" alt="">
+                                </div>
                                 <p class="GroupName">${post.postText}</p>
                             </li>`;
 
@@ -246,7 +244,8 @@
         }
 
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="/javascripts/chat.js"></script>
 </body>
 
 </html>

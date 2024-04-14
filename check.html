@@ -1,0 +1,356 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Chat App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        section {
+            display: grid;
+            place-content: center;
+        }
+
+        section h2 {
+            opacity: 0;
+            transform: translateY(150px);
+        }
+
+        #features>div:nth-child(1) {
+            transform: translateY(150px);
+        }
+
+        #features>div:nth-child(2) {
+            transform: translateY(250px);
+        }
+
+        #features>div:nth-child(3) {
+            /* color: red; */
+            transform: translateY(350px);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-600 h-screen ">
+    <!-- header.ejs -->
+    <header
+        class="bg-gray-900 bg-opacity-90 text-white py-4 px-4 fixed w-full z-50 shadow-lg shadow-indigo-500/40 border-b-2 border-gray-800"
+        id="nav">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="grid place-content-center">
+                <a href="#" class="text-xl font-bold">
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full text-center">E
+                        </div>
+                        <p
+                            class="bg-gradient-to-r from-red-500 to-blue-500 bg-clip-text text-transparent text-3xl text-center">
+                            Explain</p>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <button id="theme-toggle" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded">
+                    Toggle Theme
+                </button>
+            </div>
+        </div>
+    </header>
+    <div id="main">
+        <!-- hero.ejs -->
+        <section class="bg-gray-900 text-white py-16 h-screen grid place-content-center" id="page1">
+            <div class="container mx-auto text-center">
+                <h1 class="font-extrabold text-6xl md:text-9xl tracking-wider mb-4">Connect with Friends, Anytime,
+                    Anywhere
+                </h1>
+                <p class="text-xl md:text-2xl mb-8">Join our social chatting app and never miss a conversation again.
+                </p>
+            </div>
+            <div class="bg-green-500 text-gray-600 w-12 h-12 rounded-full text-center">E</div>
+        </section>
+        <!-- features.ejs -->
+        <section class="bg-gray-900 text-white py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center translate-y-12">Key Features</h2>
+                <div id="features" class="grid place-content-center md:grid-cols-3 gap-8">
+                    <div
+                        class="max-w-sm rounded overflow-hidden shadow-lg bg-white bg-opacity-10 backdrop-blur-lg backdrop-filter hover:bg-opacity-20 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 px-6 py-4">
+                        <p class=" font-bold text-xl mb-2">Real-time Chatting</p>
+                        <p
+                            class="text-gray-600 text-base hover:text-gray-200 transition duration-500 ease-in-out transform ">
+                            Chat with friends and family in real-time, no delays. </p>
+                    </div>
+                    <div
+                        class="max-w-sm rounded overflow-hidden shadow-lg bg-white bg-opacity-10 backdrop-blur-lg backdrop-filter hover:bg-opacity-20 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 px-6 py-4">
+                        <p class="font-bold text-xl mb-2">Group Chats</p>
+                        <p
+                            class="text-gray-600 text-base hover:text-gray-200 transition duration-500 ease-in-out transform ">
+                            Create group chats and stay connected with multiple friends at once.</p>
+                    </div>
+                    <div id="feat3"
+                        class="max-w-sm rounded overflow-hidden shadow-lg bg-white bg-opacity-10 backdrop-blur-lg backdrop-filter hover:bg-opacity-20 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 px-6 py-4">
+                        <p class="font-bold text-xl mb-2">Cross-Platform</p>
+                        <p
+                            class="text-gray-600 text-base hover:text-gray-200 transition duration-500 ease-in-out transform ">
+                            Access your chats from any device - desktop, tablet, or mobile. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- how-it-works.ejs -->
+        <section class="bg-gray-900 text-white py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">How It Works</h2>
+                <div class="grid place-content-center md:grid-cols-3 gap-8">
+                    <div class="step">
+                        <div class="step-circle">1</div>
+                        <h3 class="text-xl font-semibold mb-2">Sign Up</h3>
+                        <p class="text-lg">Create your account in just a few simple steps.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">2</div>
+                        <h3 class="text-xl font-semibold mb-2">Find Friends</h3>
+                        <p class="text-lg">Search for your friends or invite them to join.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">3</div>
+                        <h3 class="text-xl font-semibold mb-2">Start Chatting</h3>
+                        <p class="text-lg">Begin chatting with your friends instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- testimonials.ejs -->
+        <section class="bg-gray-900 text-white py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Testimonials</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="testimonial">
+                        <div class="testimonial-avatar">
+                            <img src="avatar1.jpg" alt="Testimonial Avatar" class="rounded-full w-16 h-16 mx-auto mb-4">
+                        </div>
+                        <p class="text-lg mb-4">"This app has revolutionized how I stay connected with my friends. I
+                            love
+                            the real-time chatting feature!"</p>
+                        <p class="text-sm">- John Doe</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-avatar">
+                            <img src="avatar2.jpg" alt="Testimonial Avatar" class="rounded-full w-16 h-16 mx-auto mb-4">
+                        </div>
+                        <p class="text-lg mb-4">"The group chat functionality is fantastic! It's so easy to coordinate
+                            plans
+                            with my friends now."</p>
+                        <p class="text-sm">- Jane Smith</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-avatar">
+                            <img src="avatar3.jpg" alt="Testimonial Avatar" class="rounded-full w-16 h-16 mx-auto mb-4">
+                        </div>
+                        <p class="text-lg mb-4">"I've tried several chat apps before, but this one is by far the best.
+                            Highly recommend!"</p>
+                        <p class="text-sm">- Alex Johnson</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- download.ejs -->
+        <section class="bg-gray-900 text-white py-16">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">Join Our App</h2>
+                <p class="text-lg mb-8">Get started today and connect with your friends on the go!</p>
+                <div class="flex justify-center">
+                    <a href="#"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full">LogIn</a>
+                    <a href="#"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full ml-4">SignUp</a>
+                </div>
+            </div>
+        </section>
+        <!-- about-us.ejs -->
+        <section class="bg-gray-900 text-white py-16">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">About Us</h2>
+                <p class="text-lg mb-8">Social Chat App is dedicated to providing a seamless chatting experience for
+                    users around the globe. Our mission is to connect people and foster meaningful conversations by
+                    offering a user-friendly platform that transcends geographical boundaries. With a focus on
+                    inclusivity and accessibility, we strive to empower individuals to communicate effectively, build
+                    relationships, and share experiences regardless of their location or background. Through innovative
+                    features and cutting-edge technology, we aim to create a vibrant online community where every voice
+                    is heard and valued.</p>
+            </div>
+        </section>
+        <!-- footer.ejs -->
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="container mx-auto text-center">
+                <p class="text-lg">Connect with us on social media:</p>
+                <div class="flex justify-center mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="mt-4">© 2024 Social Chat App. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function locomotiveAnimation() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const locoScroll = new LocomotiveScroll({
+                el: document.querySelector("#main"),
+                smooth: true,
+
+                // for tablet smooth
+                tablet: { smooth: true },
+
+                // for mobile
+                smartphone: { smooth: true }
+            });
+            locoScroll.on("scroll", ScrollTrigger.update);
+
+            ScrollTrigger.scrollerProxy("#main", {
+                scrollTop(value) {
+                    return arguments.length
+                        ? locoScroll.scrollTo(value, 0, 0)
+                        : locoScroll.scroll.instance.scroll.y;
+                },
+                getBoundingClientRect() {
+                    return {
+                        top: 0,
+                        left: 0,
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    };
+                }
+            });
+            ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+            ScrollTrigger.refresh();
+        }
+        function loadingAnimation() {
+
+            var tl = gsap.timeline()
+            tl.from("#page1", {
+                opacity: 0,
+                duration: 0.2,
+                delay: 0.2
+            })
+            tl.from("#page1", {
+                transform: "scaleX(0.7) scaleY(0.2) translateY(80%)",
+                borderRadius: "150px",
+                duration: 2,
+                ease: "expo.out"
+            })
+            tl.from("#nav", {
+                opacity: 0,
+                delay: -0.2,
+                y: -50
+            })
+            tl.from("#page1 div h1, #page1 div p, #page1 div", {
+                opacity: 0,
+                duration: 0.5,
+                stagger: {
+                    amount: 0.5
+                },
+                y: 150
+            })
+        }
+        function scrollAnimation() {
+            gsap.to("section h2", {
+                opacity: 1,
+                duration: 1,
+                delay: 0.5,
+                y: 0,
+                scrollTrigger: {
+                    trigger: "section h2",
+                    scroller: "#main",
+                    start: "top 90%",
+                    end: "top 90%",
+                    scrub: true
+                }
+            })
+            gsap.to("section div div", {
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#features",
+                    scroller: "#main",
+                    start: "top 70%",
+                    end: "top 70%",
+                    scrub: true
+                },
+                stagger: {
+                    amount: 0.5
+                }
+            });
+        }
+        function zommingAnimation() {
+            var rightElems = document.querySelectorAll("#features div")
+            rightElems.forEach(function (elem) {
+                elem.addEventListener("mouseenter", function () {
+                    gsap.to(elem, {
+                        scale: 1.1,
+                        duration: 0.1
+                    })
+                })
+                elem.addEventListener("mouseleave", function () {
+                    gsap.to(elem, {
+                        scale: 1,
+                        duration: 0.1
+                    })
+                })
+            })
+        }
+        function cursorAnimation() {
+            let elem = document.querySelector("#page1")
+            elem.addEventListener("mouseenter", function () {
+                gsap.to(elem.childNodes[3], {
+                    opacity: 1,
+                    scale: 1
+                })
+            })
+            elem.addEventListener("mouseleave", function () {
+                gsap.to(elem.childNodes[3], {
+                    opacity: 0,
+                    scale: 0
+                })
+            })
+            elem.addEventListener("mousemove", function (dets) {
+
+                gsap.to(elem.childNodes[3], {
+                    x: dets.x - elem.getBoundingClientRect().x-130,
+                    y: dets.y - elem.getBoundingClientRect().y -610
+                })
+            })
+        }
+        locomotiveAnimation();
+        loadingAnimation();
+        scrollAnimation();
+        zommingAnimation();
+        cursorAnimation();
+        // document.addEventListener('DOMContentLoaded', 
+        function darkMode() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.querySelectorAll("#page1");
+
+            themeToggle.addEventListener('click', function () {
+                body.classList.toggle('bg-white-900');
+            });
+        }
+        darkMode();
+        // );
+    </script>
+</body>
+
+</html>

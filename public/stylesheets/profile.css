@@ -183,6 +183,10 @@ button:hover {
   background-color: #4cb36a;
   border-color: #4cb36a;
 }
+.Question{
+  text-align: center;
+  color: #fff;
+}
 @media (max-width: 399px) {
   .cover .profile-pic {
     max-width: 110px;
