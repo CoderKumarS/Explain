@@ -117,6 +117,7 @@ body {
 
 .text-center {
   text-align: center;
+  position: relative;
 }
 
 h1 {
@@ -232,4 +233,20 @@ button:hover {
     padding: 15px 0;
     padding-bottom: 0;
   }
+}
+#edit{
+  background-image: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(255, 255, 255, 0.269));
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+  position: absolute;
+  top: -50%;
+}
+#edit i{
+  color: #000000;
+  font-size: 3vh;
 }
