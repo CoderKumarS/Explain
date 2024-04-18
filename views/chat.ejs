@@ -173,7 +173,8 @@
         // Connect to the server
         var socket = io();
 
-        function sendComment() {
+        function sendComment(e) {
+            e.preventDefault();
             const commentInput = document.getElementById("MessageInput").value;
             if (!commentInput.trim()) {
                 return; // Don't send empty comments

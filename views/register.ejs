@@ -4,7 +4,9 @@
 <head>
   <title>Registration Form</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
+
 <body>
   <input type="radio" id="registerForm" name="formToggle" checked>
   <div class="wrapper" id="registerFormContent">
@@ -12,29 +14,42 @@
       <div id="left">
         <h1 id="welcome">Welcome</h1>
         <p id="lorem">
-          Social Chat App is dedicated to providing a seamless<br> chatting experience for users around the globe. Our <br>mission is to connect people and foster meaningful<br> conversations by offering a user-friendly <br>platform that transcends geographical. With<br> a focus on inclusivity and accessibility, we<br> strive to empower individuals to communicate<br> effectively, build relationships, and share <br>experiences regardless of their location or <br>background. Through innovative features and <br>cutting-edge technology, we aim to create a vibrant<br> online community where every voice is heard and valued.
+          Social Chat App is dedicated to providing a seamless<br> chatting experience for users around the globe. Our
+          <br>mission is to connect people and foster meaningful<br> conversations by offering a user-friendly
+          <br>platform that transcends geographical. With<br> a focus on inclusivity and accessibility, we<br> strive to
+          empower individuals to communicate<br> effectively, build relationships, and share <br>experiences regardless
+          of their location or <br>background. Through innovative features and <br>cutting-edge technology, we aim to
+          create a vibrant<br> online community where every voice is heard and valued.
         </p>
       </div>
       <form action="/register" id="right" method="post" enctype="multipart/form-data">
-        <h1 id="login">Register</h1><br>
-        <% if(error.length>0) { %>
-          <p class="error"><%= error %></p>
-        <% } %>
-          <input type="file" id="profile" name="profile" required class="client-info">
-          <input type="text" id="fullname" name="fullname" required class="client-info">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="username" name="username" required class="client-info">
-          <label for="username">Username</label>
-          <input type="email" id="email" name="email" class="client-info">
-          <label for="email">Email</label>
-          <input type="password" name="password" id="password" class="client-info">
-          <label for="password">Password</label>
-          <div class="client-info check">
-            <input type="checkbox" id="checkbox" name="checkbox" required>
-            <label for="checkbox">I agree to terms & conditions</label>
-          </div>
-          <input type="submit" id="submit" class="client-info" value="Submit">
-          <button class="social" id="facebook">Already have an account? <label><a href="/app">Login</a></label></button>
+        <h1 id="login">Register</h1>
+        <% if (error && error.length> 0) { %>
+          <p class="error">
+            <%= error %>
+          </p>
+          <% } %>
+            <div class="client-info profile">
+              <input type="file" id="profile" name="profile" required class="client-info">
+              <span>
+                <i class="ri-account-circle-fill"></i>
+              </span>
+            </div>
+            <input type="text" id="fullname" name="fullname" required class="client-info">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="username" name="username" required class="client-info">
+            <label for="username">Username</label>
+            <input type="email" id="email" name="email" class="client-info">
+            <label for="email">Email</label>
+            <input type="password" name="password" id="password" class="client-info">
+            <label for="password">Password</label>
+            <div class="client-info check">
+              <input type="checkbox" id="checkbox" name="checkbox" required>
+              <label for="checkbox">I agree to terms & conditions</label>
+            </div>
+            <input type="submit" id="submit" class="client-info" value="Submit">
+            <button class="social" id="facebook">Already have an account? <label><a
+                  href="/app">Login</a></label></button>
       </form>
     </div>
   </div>

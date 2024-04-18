@@ -21,6 +21,24 @@ body {
   font-weight: 300;
 }
 
+#log {
+  position: sticky;
+  top: 5%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 2rem;
+}
+#log button{
+  width: max-content;
+  z-index: 10;
+  padding: 0.5rem;
+}
+#log button a{
+  text-decoration: none;
+  color: white;
+}
 .container {
   max-width: 700px;
   width: 100%;
@@ -30,7 +48,7 @@ body {
   backdrop-filter: blur(20px) saturate(130%);
   border-radius: 10px;
   overflow: hidden;
-  margin-block: 5rem;
+  margin-block: 2rem;
 }
 
 .tabs {
@@ -48,10 +66,11 @@ body {
   font-weight: 400;
 }
 
-.tabs li a{
+.tabs li a {
   text-decoration: none;
   color: #fff;
 }
+
 .tabs li.active {
   border-bottom: 2px solid;
   border-image: var(--bg);
@@ -164,11 +183,9 @@ textarea::placeholder {
 button {
   font-family: var(--font);
   background-color: #5ebb79;
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0)
-  );
+  background-image: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0));
   border-color: #5ebb79;
   width: 100%;
   color: #0f1623;
@@ -183,27 +200,34 @@ button:hover {
   background-color: #4cb36a;
   border-color: #4cb36a;
 }
-.Question{
+
+.Question {
   text-align: center;
   color: #fff;
 }
+
 @media (max-width: 399px) {
   .cover .profile-pic {
     max-width: 110px;
     max-height: 110px;
   }
+
   .cover .profile-pic img {
     max-width: 100px;
   }
+
   h1 {
     font-size: 28px;
   }
+
   .tabs li {
     padding: 8px;
   }
+
   .main {
     padding: 15px;
   }
+
   .tab-content {
     padding: 15px 0;
     padding-bottom: 0;

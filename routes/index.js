@@ -16,9 +16,6 @@ router.get('/', function (req, res, next) {
 router.get('/app', function (req, res, next) {
   res.render('index', { error: req.flash('error') });
 });
-router.get('/loginapp', function (req, res, next) {
-  res.render('register', { error: req.flash('error') });
-});
 router.get('/chat', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user })
   const posts = await postModel.find()
@@ -98,27 +95,50 @@ router.post("/register", upload.single("profile"), (req, res) => {
   const profile = req.file.filename;
   const { username, email, fullname } = req.body;
   const userData = new userModel({ profile, username, email, fullname })
-  userModel.register(userData, req.body.password)
-    .then(() => {
-      passport.authenticate("local")(req, res, () => {
-        res.redirect("/profile");
-      })
-    })
-})
+  
+  userModel.register(userData, req.body.password, (err) => {
+    if (err) {
+      req.flash("error", err.message);
+      res.redirect("/loginapp");
+    } else {
+      passport.authenticate("local", {
+        successRedirect: "/profile",
+        failureRedirect: "/loginapp",
+        failureFlash: true
+      })(req, res);
+    }
+  });
+});
 
+router.get('/loginapp', function (req, res, next) {
+  const error = req.flash('error');
+  res.render('register', { error });
+});
+
+
+router.get('/edit', isLoggedIn, async function (req, res) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  res.render('edit', { user });
+});
+router.post('/update', upload.single("image"), async function (req, res) {
+  const user = await userModel.findOneAndUpdate({ username: req.session.passport.user }, { username: req.body.username, fullname: req.body.fullname, bio: req.body.bio }, { new: true });
+  user.profile = req.file.filename;
+  await user.save();
+  res.redirect("/profile");
+});
 router.get("/search/:username", async (req, res) => {
   const regex = new RegExp(`^${req.params.username}`, 'i');
   const users = await userModel.find({ fullname: regex });
   res.json(users);
 })
 router.get("/users/:username", async (req, res) => {
-  const user = await userModel.findOne({_id: req.params.username })
-  .populate(["posts", "projects"]);
+  const user = await userModel.findOne({ _id: req.params.username })
+    .populate(["posts", "projects"]);
   res.render('profile', { user });
 })
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/profile",
-  failureRedirect: "/",
+  failureRedirect: "/app",
   failureFlash: true
 }), (req, res) => {
 })

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
   font-family: "Poppins", sans-serif;
 }
 
@@ -27,33 +28,21 @@ body {
 
 .wrapper .input-box {
   position: relative;
-
   width: 100%;
-
   height: 50px;
-
   margin: 30px 0;
 }
 
 .input-box input {
   width: 100%;
-
   height: 100%;
-
   background: transparent;
-
   border: none;
-
   outline: none;
-
   border: 1px solid white;
-
   border-radius: 40px;
-
   font-size: 16px;
-
   color: #fff;
-
   padding: 20px 45px 20px 20px;
 }
 
@@ -63,35 +52,26 @@ body {
 
 .input-box i {
   position: absolute;
-
   right: 20px;
-
   top: 30%;
-
   transform: translate(-50%);
-
   font-size: 20px;
 }
 
 .wrapper .checkbox1 {
   display: flex;
-
   justify-content: space-between;
-
   font-size: 14.5px;
-
   margin: -15px 0 15px;
 }
 
 .checkbox1 label input {
   accent-color: #fff;
-
   margin-right: 3px;
 }
 
 .checkbox1 a {
   color: #fff;
-
   text-decoration: none;
 }
 
@@ -101,43 +81,28 @@ body {
 
 .wrapper .btn {
   width: 100%;
-
   height: 45px;
-
   background: #fff;
-
   border: none;
-
   outline: none;
-
   border-radius: 40px;
-
   border: 1px solid white;
-
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
   cursor: pointer;
-
   font-size: 16px;
-
   color: #333;
-
   font-weight: 600;
 }
 
 .wrapper .link {
   font-size: 14.5px;
-
   text-align: center;
-
   margin: 20px 0 15px;
 }
 
 .link p a {
   color: #fff;
-
   text-decoration: none;
-
   font-weight: 600;
 }
 
@@ -161,12 +126,6 @@ input[type="radio"] {
   text-transform: capitalize;
   margin: 10px 0px;
   text-align: center;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
 }
 
 :root {
@@ -269,14 +228,26 @@ body {
 }
 
 #profile {
+  display: none;
+}
+.profile {
   width: 4rem;
   border-radius: 50%;
   height: 4rem;
-  text-align: center;
-  background: inherit;
-  margin-block: 0px;
+  margin: auto;
+  border: 1px solid #333;
+  overflow: hidden;
 }
-
+.profile span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -12px;
+  left: -23px;
+}
+.profile span i{
+  font-size: 5rem;
+}
 label {
   position: absolute;
   margin: -76px 130px;
@@ -336,7 +307,7 @@ label {
   color: var(--facebook-color);
 }
 
-#facebook label a{
+#facebook label a {
   color: var(--facebook-color);
   text-decoration: none;
 }
@@ -344,7 +315,7 @@ label {
 #facebook:hover {
   background-color: var(--facebook-color);
 
-  label a{
+  label a {
     color: white;
   }
 
@@ -397,8 +368,8 @@ button>label {
 @media (max-height: 850px) {
 
   #container {
-    width: 1000px;
-    height: 600px;
+    width: 70rem;
+    height: 40rem;
   }
 
   #login {
