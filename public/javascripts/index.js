@@ -1,4 +1,3 @@
-
 var tl = gsap.timeline();
 tl.from('#left', {
     x: -500,

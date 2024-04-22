@@ -1,56 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Login and Registration Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Forgot Form</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
-
 </head>
 
 <body>
   <input type="radio" id="loginForm" name="formToggle" checked>
   <input type="radio" id="forgotForm" name="formToggle">
   <div class="wrapper" id="loginFormContent">
-    <div id="container">
-      <div id="left">
-        <h1 id="welcome">Welcome</h1>
-        <p id="lorem">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
-          Vivamus sodales eros non arcu pellentesque convallis.<br>
-          Nunc dignissim lectus in malesuada porta.<br>
-          Proin ac erat sed urna congue suscipit.<br>
-          Morbi aliquet eget nisl id ornare.
-        </p>
+      <div id="container">
+          <div id="left">
+              <h1 id="welcome">Welcome</h1>
+              <p id="lorem">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                  Vivamus sodales eros non arcu pellentesque convallis.<br>
+                  Nunc dignissim lectus in malesuada porta.<br>
+                  Proin ac erat sed urna congue suscipit.<br>
+                  Morbi aliquet eget nisl id ornare.
+              </p>
+          </div>
+          <form id="right" action="/login" method="post">
+              <h1 id="login">LogIn</h1>
+              <% if(error.length>0) { %>
+              <p class="error"><%= error %></p>
+              <% } %>
+              <div class="input">
+                  <input type="text" class="client-info" name="username" required />
+                  <label for="username" id="username">Username</label>
+              </div>
+              <div class="input">
+                  <input type="password" name="password" required class="client-info">
+                  <label for="password" id="password">Password</label>
+              </div>
+              <input type="submit" class="client-info submit" value="Submit">
+              <button class="specialButton register">Don't have an account?
+                  <label><a href="/loginapp">Register</a></label>
+              </button>
+              <button class="specialButton" id="forgot">
+                  <label for="forgotForm">Forgot Password</label>
+              </button>
+          </form>
       </div>
-      <form id="right" action="/login" method="post" >
-        <h1 id="login">LogIn</h1><br>
-        <% if(error.length>0) { %>
-        <p class="error"><%= error %></p>
-        <% } %>
-        <input type="text" class="client-info" name="username" required>
-        <label for="username" id="username">Username</label>
-        <input type="password" name="password" required class="client-info">
-        <label for="password" id="password">Password</label>
-        <label for="forgotForm">Forgot Password</label>
-        <input type="submit" id="submit" class="client-info" value="Submit">
-        <button class="social" id="facebook">Don't have an account? <label><a href="/loginapp">Register</a></label></button>
-        <button class="social" id="google"><label for="forgotForm">Forgot Password</label></button>
-      </form>
-    </div>
   </div>
   <div class="wrapper" id="forgotFormContent">
-    <form action="">
-      <h1>Reset your password</h1>
-      <div class="input-box">
-        <input type="email" placeholder="Email" name required>
-      </div>
-      <div class="input-box">
-        <button type="submit" class="btn">Send Request</button>
-        <div class="link">
-          <p>Don't have an account? <label for="registerForm">Register</label></p>
+    <div id="container">
+        <div id="left">
+            <h1 id="welcome">Welcome</h1>
+            <p id="lorem">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                Vivamus sodales eros non arcu pellentesque convallis.<br>
+                Nunc dignissim lectus in malesuada porta.<br>
+                Proin ac erat sed urna congue suscipit.<br>
+                Morbi aliquet eget nisl id ornare.
+            </p>
         </div>
-    </form>
-  </div>
+        <form id="right" action="/forgot" method="post">
+            <h1 id="login">Reset your password</h1>
+            <div class="input">
+                <input type="text" class="client-info" name="username" required />
+                <label for="username" id="username">Username</label>
+            </div>
+            <div class="input">
+                <input type="email" name="email" required class="client-info">
+                <label for="email" id="email">Email</label>
+            </div>
+            <input type="submit" class="client-info submit" value="Reset">
+            <button class="specialButton register">Don't have an account?
+                <label><a href="/loginapp">Register</a></label>
+            </button>
+        </form>
+    </div>
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="/javascripts/index.js"></script>
 </body>
