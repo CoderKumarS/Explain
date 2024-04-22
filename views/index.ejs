@@ -25,18 +25,16 @@
       <form id="right" action="/login" method="post" >
         <h1 id="login">LogIn</h1><br>
         <% if(error.length>0) { %>
-          <p class="error">
-            <%= error %>
-          </p>
-          <% } %>
-            <input type="text" class="client-info" name="username" required>
-            <label for="username" id="username">Username</label>
-            <input type="password" name="password" required class="client-info">
-            <label for="password" id="password">Password</label>
-            <label for="forgotForm">Forgot Password</label>
-            <input type="submit" id="submit" class="client-info" value="Submit">
-            <button class="social" id="facebook">Don't have an account? <label><a href="/loginapp">Register</a></label></button>
-            <button class="social" id="google"><label for="forgotForm">Forgot Password</label></button>
+        <p class="error"><%= error %></p>
+        <% } %>
+        <input type="text" class="client-info" name="username" required>
+        <label for="username" id="username">Username</label>
+        <input type="password" name="password" required class="client-info">
+        <label for="password" id="password">Password</label>
+        <label for="forgotForm">Forgot Password</label>
+        <input type="submit" id="submit" class="client-info" value="Submit">
+        <button class="social" id="facebook">Don't have an account? <label><a href="/loginapp">Register</a></label></button>
+        <button class="social" id="google"><label for="forgotForm">Forgot Password</label></button>
       </form>
     </div>
   </div>

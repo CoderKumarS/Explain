@@ -152,7 +152,7 @@ body {
   transform: translate(-50%, -50%);
   background-color: var(--main-color);
   width: 1200px;
-  height: 800px;
+  height: 85vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(2, 50%);
@@ -166,6 +166,7 @@ body {
   width: 95%;
   height: 96%;
   border-radius: 10px;
+  
 }
 
 #left {
@@ -344,6 +345,27 @@ button>label {
   background-color: transparent;
 }
 
+@media (max-height: 850px) {
+
+  #container {
+    width: 70rem;
+  }
+
+  #login {
+    padding-top: 20%;
+  }
+
+  #welcome {
+    margin-top: 240px;
+    font-size: 60px;
+  }
+
+  #lorem {
+    font-size: 15px;
+  }
+
+}
+
 @media (max-width: 1250px) {
 
   #container {
@@ -361,28 +383,6 @@ button>label {
     background-size: cover;
     background-position: center;
     box-shadow: var(--box-shadow);
-  }
-
-}
-
-@media (max-height: 850px) {
-
-  #container {
-    width: 70rem;
-    height: 40rem;
-  }
-
-  #login {
-    padding-top: 20%;
-  }
-
-  #welcome {
-    margin-top: 240px;
-    font-size: 60px;
-  }
-
-  #lorem {
-    font-size: 15px;
   }
 
 }

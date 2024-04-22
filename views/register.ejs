@@ -25,31 +25,29 @@
       <form action="/register" id="right" method="post" enctype="multipart/form-data">
         <h1 id="login">Register</h1>
         <% if (error && error.length> 0) { %>
-          <p class="error">
-            <%= error %>
-          </p>
-          <% } %>
-            <div class="client-info profile">
-              <input type="file" id="profile" name="profile" required class="client-info">
-              <span>
-                <i class="ri-account-circle-fill"></i>
-              </span>
-            </div>
-            <input type="text" id="fullname" name="fullname" required class="client-info">
-            <label for="fullname">Full Name</label>
-            <input type="text" id="username" name="username" required class="client-info">
-            <label for="username">Username</label>
-            <input type="email" id="email" name="email" class="client-info">
-            <label for="email">Email</label>
-            <input type="password" name="password" id="password" class="client-info">
-            <label for="password">Password</label>
-            <div class="client-info check">
-              <input type="checkbox" id="checkbox" name="checkbox" required>
-              <label for="checkbox">I agree to terms & conditions</label>
-            </div>
-            <input type="submit" id="submit" class="client-info" value="Submit">
-            <button class="social" id="facebook">Already have an account? <label><a
-                  href="/app">Login</a></label></button>
+        <p class="error"><%= error %></p>
+        <% } %>
+        <div class="client-info profile">
+          <input type="file" id="profile" name="profile" required class="client-info">
+          <span>
+            <i class="ri-account-circle-fill"></i>
+          </span>
+        </div>
+        <input type="text" id="fullname" name="fullname" required class="client-info">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="username" name="username" required class="client-info">
+        <label for="username">Username</label>
+        <input type="email" id="email" name="email" class="client-info">
+        <label for="email">Email</label>
+        <input type="password" name="password" id="password" class="client-info">
+        <label for="password">Password</label>
+        <div class="client-info check">
+          <input type="checkbox" id="checkbox" name="checkbox" required>
+          <label for="checkbox">I agree to terms & conditions</label>
+        </div>
+        <input type="submit" id="submit" class="client-info" value="Submit">
+        <button class="social" id="facebook">Already have an account? <label><a
+              href="/app">Login</a></label></button>
       </form>
     </div>
   </div>

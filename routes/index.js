@@ -7,9 +7,7 @@ const commentModel = require('./comment');
 const passport = require('passport');
 const upload = require('./multer');
 const localStrategy = require("passport-local");
-// for login
 passport.use(new localStrategy(userModel.authenticate()));
-/* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('main');
 });
@@ -77,11 +75,6 @@ router.post('/comments', isLoggedIn, async function (req, res, next) {
   const post = await postModel.findById(postId);
   post.comments.push(newComment._id);
   await post.save();
-
-  // Emit a 'newComment' event with the new comment data
-  // var io = socketIO('http://localhost:3000');
-  // io.emit('newComment', { postId, comment });
-
   res.redirect("/chat"); // Redirect back to the chat page
 });
 router.get('/profile', isLoggedIn, async function (req, res, next) {
@@ -95,7 +88,7 @@ router.post("/register", upload.single("profile"), (req, res) => {
   const profile = req.file.filename;
   const { username, email, fullname } = req.body;
   const userData = new userModel({ profile, username, email, fullname })
-  
+
   userModel.register(userData, req.body.password, (err) => {
     if (err) {
       req.flash("error", err.message);
@@ -109,20 +102,22 @@ router.post("/register", upload.single("profile"), (req, res) => {
     }
   });
 });
-
 router.get('/loginapp', function (req, res, next) {
   const error = req.flash('error');
   res.render('register', { error });
 });
-
-
 router.get('/edit', isLoggedIn, async function (req, res) {
   const user = await userModel.findOne({ username: req.session.passport.user });
   res.render('edit', { user });
 });
-router.post('/update', upload.single("image"), async function (req, res) {
-  const user = await userModel.findOneAndUpdate({ username: req.session.passport.user }, { username: req.body.username, fullname: req.body.fullname, bio: req.body.bio }, { new: true });
+router.post('/updatePic', isLoggedIn, upload.single("image"), async function (req, res) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
   user.profile = req.file.filename;
+  await user.save();
+  res.redirect("/edit");
+});
+router.post('/update', isLoggedIn, async function (req, res) {
+  const user = await userModel.findOneAndUpdate({ username: req.session.passport.user },{ username: req.body.username, fullname: req.body.fullname, bio: req.body.bio }, { new: true });
   await user.save();
   res.redirect("/profile");
 });

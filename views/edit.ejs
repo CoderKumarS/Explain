@@ -5,63 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
-    <style>
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="/stylesheets/edit.css">
 </head>
 
 <body>
     <div class="container">
         <h1>Edit Profile</h1>
-        <form action="/update" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="image">Profile Image</label>
-                <input type="file" id="image" name="image" value="/images/uploads<%= user.profile%>">
-            </div>
+        <div class="form-group img-tag" id="pic">
+            <img src="/images/uploads/<%= user.profile%>">
+        </div>
+        <form action="/updatePic" class="form-group" hidden id="picUpload" method="post" enctype="multipart/form-data">
+            <label for="image">Profile Image</label>
+            <input type="file" id="image" name="image">
+        </form>
+        <form action="/update" method="POST">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="fullname" value="<%= user.fullname %>">
@@ -80,7 +37,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script>
         gsap.from(".container", { opacity: 0, duration: 1, y: -50, ease: "power2.out" });
-
+        document.querySelector("#pic img").addEventListener("click", function () {
+            document.getElementById("image").click();
+        });
+        document.querySelector("#picUpload input").addEventListener("change", function () {
+            document.getElementById("picUpload").submit();
+        });
     </script>
 </body>
 
