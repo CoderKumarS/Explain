@@ -1,26 +1,36 @@
-var tl = gsap.timeline();
-tl.from('#left', {
-    x: -500,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    delay: 0.2
-})
-tl.from('#right, #right h1', {
-    x: 500,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    delay: 1
-})
-tl.to("#right input, #right label, #right div", {
-    y: 0,
-    opacity: 1,
-    delay: 0.5,
-    duration: 0.5,
-    stagger: 0.2
-})
-
+function animation() {
+    var tl = gsap.timeline();
+    document.addEventListener('DOMContentLoaded', function () {
+        tl.from('#container', {
+            duration: 1,
+            scale: 0,
+            opacity: 0
+        })
+        var tag =(document.querySelector("#container").offsetWidth>1000)?'#left':'#right';
+        tl.from(tag, {
+            x: -500,
+            opacity: 0,
+            duration: 1.5,
+            ease: 'expo.inOut'
+        })
+        tl.from('#right h1, #right p', {
+            duration: 1,
+            scaleY: 0,
+            ease: 'expo.inOut',
+            delay: 0.5,
+            stagger: 0.2
+        });
+        tl.from('#right .input', {
+            opacity: 0,
+            y: 40,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0.2,
+            delay: 0.2
+        });
+    });
+}
+animation();
 document.querySelector('.profile').addEventListener('click', function () {
     document.querySelector('#profile').click();
 })

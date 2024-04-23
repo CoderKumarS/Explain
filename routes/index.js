@@ -106,6 +106,13 @@ router.get('/loginapp', function (req, res, next) {
   const error = req.flash('error');
   res.render('register', { error });
 });
+router.get('/forgot', function (req, res, next) {
+  const error = req.flash('error');
+  res.render('forgot', { error });
+});
+router.post('/forgot', function (req, res, next) {
+  res.render('forgot');
+});
 router.get('/edit', isLoggedIn, async function (req, res) {
   const user = await userModel.findOne({ username: req.session.passport.user });
   res.render('edit', { user });

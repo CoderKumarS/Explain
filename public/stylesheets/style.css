@@ -63,7 +63,6 @@ input[type="radio"] {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   box-shadow: var(--box-shadow);
-  transition-duration: 1s;
 }
 
 #left,
@@ -105,7 +104,7 @@ input[type="radio"] {
 
 .client-info {
   display: block;
-  margin: 18px auto;
+  margin: 10px auto;
   width: 60%;
   height: 50px;
   border: solid #999 1px;
@@ -113,7 +112,6 @@ input[type="radio"] {
   text-indent: 15px;
   transition: all 200ms;
   box-shadow: var(--box-shadow);
-  transform: translate(0px, -800px);
 }
 
 .check {
@@ -149,6 +147,7 @@ input[type="radio"] {
   margin: auto;
   border: 1px solid #333;
   overflow: hidden;
+  position: relative;
 }
 
 .profile span {
@@ -173,7 +172,6 @@ label {
   transition: all 200ms;
   text-shadow: var(--box-shadow);
   border-radius: 5px;
-  transform: translate(0px, -800px);
 }
 
 .submit {
@@ -181,6 +179,7 @@ label {
   background-color: #9055ff;
   color: white;
   width: 60%;
+  font-size: inherit;
 }
 
 .submit:hover {
@@ -209,6 +208,7 @@ label {
 .register label a {
   color: var(--register-color);
   text-decoration: none;
+  font-size: inherit;
 }
 
 .register:hover {
@@ -216,7 +216,7 @@ label {
   color: white;
 
   label a {
-      color: white;
+    color: white;
   }
 }
 
@@ -224,15 +224,16 @@ label {
   border: solid var(--forgot-color) 1px;
 }
 
-#forgot label {
+#forgot label a{
   color: var(--forgot-color);
+  text-decoration: none;
 }
 
 #forgot:hover {
   background-color: var(--forgot-color);
 
-  label {
-      color: white;
+  label a{
+    color: white;
   }
 }
 
@@ -240,21 +241,22 @@ button>label {
   position: unset;
   margin: 0;
   background-color: transparent;
+  font-size: inherit;
 }
 
 @media (max-height: 850px) {
 
   #login {
-      padding-top: 20%;
+    padding: 20% 0% 10%;
   }
 
   #welcome {
-      margin-top: 240px;
-      font-size: 60px;
+    margin-top: 240px;
+    font-size: 60px;
   }
 
   #lorem {
-      font-size: 15px;
+    font-size: 15px;
   }
 
 }
@@ -262,26 +264,26 @@ button>label {
 @media (max-width: 1250px) {
 
   #container {
-      display: block;
+    display: block;
   }
 
   #left {
-      display: none;
+    display: none;
   }
 
   #right {
-      margin-top: 10px;
-      background-image: url("https://images.unsplash.com/photo-1615400014497-55726234cccb?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxNzg4Njg0Ng&ixlib=rb-1.2.1&q=85");
-      background-size: cover;
-      background-position: center;
-      box-shadow: var(--box-shadow);
+    margin-top: 10px;
+    background-image: url("https://images.unsplash.com/photo-1615400014497-55726234cccb?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxNzg4Njg0Ng&ixlib=rb-1.2.1&q=85");
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--box-shadow);
   }
 
 }
 
 @media (max-height: 850px) {
   #registerFormContent #container #right #login {
-      padding: 2%;
+    padding: 2%;
   }
 }
 
@@ -293,6 +295,6 @@ button>label {
 }
 
 .input>label {
-  top: 15%;
+  top: 10%;
   left: 25%;
 }
