@@ -26,7 +26,7 @@ function initializeSocket(server) {
             await user.save();
             post.comments.push(newComment._id);
             await post.save();
-            io.emit('chatMessage', { message, timestamp: new Date()});
+            io.emit('chatMessage', { username, message, timestamp: new Date()});
         });
     });
 }

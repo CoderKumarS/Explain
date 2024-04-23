@@ -13,7 +13,6 @@ function sendComment(e) {
         comment: commentInput
     }).then(function (response) {
         // Handle successful comment submission
-        console.log('Comment submitted successfully:', response);
 
         // Emit a 'newComment' event to the server
         socket.emit('newComment', {
@@ -54,7 +53,6 @@ function sendComment() {
         comment: commentInput
     }).then(function (response) {
         // Handle successful comment submission
-        console.log('Comment submitted successfully:', response);
         // Optionally, you can redirect to the same page
         window.location.href = `/chat/${postText}`; // Redirect to chat page
     }).catch(function (error) {

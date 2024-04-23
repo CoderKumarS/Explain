@@ -24,7 +24,6 @@ const about = document.querySelector(".about").getBoundingClientRect().top;
 // Get the bottom of the bounding rectangle for the .span1 element and subtract the window height
 let span = document.querySelector(".skills .span1").getBoundingClientRect()
   .bottom;
-// console.log(span);
 span = span - w_height;
 
 // Get the bottom of the bounding rectangle for the .new_pro_img div element and subtract the window height
@@ -144,7 +143,6 @@ l_arrow.addEventListener("click", (e) => {
     let left = 100 * j;
     slider_img.style.left = `-${left}%`;
   }
-  // console.log(j)
 });
 
 // Select the right arrow element
@@ -164,7 +162,6 @@ r_arrow.addEventListener("click", (e) => {
     let left = 100 * j;
     slider_img.style.left = `-${left}%`;
   }
-  // console.log(j)
 });
 
 // view more function
@@ -185,7 +182,6 @@ const hidden = document.querySelectorAll(".certficate .hidden");
 hidden[0].style.display = "none";
 
 function view() {
-  // console.log(hidden[0].style.display);
   // Get the element with class "view_more"
   const hide_btn = document.querySelector(".certification .view_more");
 

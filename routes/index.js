@@ -27,7 +27,7 @@ router.get('/chat/:url', isLoggedIn, async function (req, res, next) {
 
     // Fetch comments associated with the post._id
     const user = await userModel.findOne({ posts: post._id });
-    const comments = await commentModel.find({ question: post._id });
+    const comments = await commentModel.find({ question: post._id }).populate("user");
 
     res.json({ post, comments, user });
   } catch (error) {

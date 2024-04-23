@@ -72,10 +72,6 @@
                 <button type="submit" class="Send"><i class="fa-solid fa-paper-plane"></i></button>
             </form>
             <p id="username" style="display: none;"><%= user.username%></p>
-            <!-- <form id="MessageForm">
-                <input type="text" id="MessageInput" placeholder="Enter Comments" name="comment">
-                <button onclick="sendComment()" class="Send"><i class="fa-solid fa-paper-plane"></i></button>
-            </form> -->
         </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"
@@ -84,39 +80,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="/javascripts/chat.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        const formatTime = (date) => {
-            return date.toLocaleTimeString('en-US', { hour12: false });
-        };
-        socket.on('chatMessage', (data)=>{
-            const messageContainer = document.querySelector('.MessageContainer');
-            const messages = document.createElement('div');
-            messages.innerHTML = `<div class="message me">
-                                    <p class="messageContent">${data.message}</p>
-                                    <div class="messageDetails">
-                                        <div class="messageTime">${formatTime(new Date(data.timestamp))}</div>
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                </div>`;
-            messageContainer.appendChild(messages);
-        })
-        const form = document.getElementById('MessageForm');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const postId = document.getElementById('postId').innerHTML;
-            console.log(postId);
-            const username = document.getElementById('username').innerHTML;
-            console.log(username);
-            const messageInput = document.getElementById('MessageInput');
-            const message = messageInput.value.trim();
-            console.log(message);
-            if (message !== '') {
-                socket.emit('chatMessage', { message, postId, username });
-                messageInput.value = '';
-            }
-        });
-    </script>
+
 </body>
 
 </html>

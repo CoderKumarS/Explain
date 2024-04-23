@@ -32,7 +32,6 @@ function locomotiveAnimation() {
     ScrollTrigger.refresh();
 }
 function loadingAnimation() {
-
     var tl = gsap.timeline()
     tl.from("#page1", {
         opacity: 0,
@@ -122,8 +121,8 @@ function cursorAnimation() {
     elem.addEventListener("mousemove", function (dets) {
 
         gsap.to(elem.childNodes[3], {
-            x: dets.x - elem.getBoundingClientRect().x - 130,
-            y: dets.y - elem.getBoundingClientRect().y - 610
+            x: dets.x - elem.getBoundingClientRect().x - 240,
+            y: dets.y - elem.getBoundingClientRect().y - 506
         })
     })
 }
@@ -132,14 +131,15 @@ loadingAnimation();
 scrollAnimation();
 zommingAnimation();
 cursorAnimation();
-// document.addEventListener('DOMContentLoaded', 
 function darkMode() {
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.querySelectorAll("#page1");
-
+    const body = document.querySelectorAll("section");
+    
     themeToggle.addEventListener('click', function () {
-        body.classList.toggle('bg-white-900');
+        body.forEach(bd =>{
+            bd.classList.toggle('bg-white');
+        });
+        
     });
 }
 darkMode();
-// );
