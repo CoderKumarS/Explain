@@ -126,20 +126,20 @@ function cursorAnimation() {
         })
     })
 }
+function darkMode() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.querySelectorAll("section");
+
+    themeToggle.addEventListener('click', function () {
+        body.forEach(bd => {
+            bd.classList.toggle('bg-white');
+        });
+
+    });
+}
 locomotiveAnimation();
 loadingAnimation();
 scrollAnimation();
 zommingAnimation();
 cursorAnimation();
-function darkMode() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.querySelectorAll("section");
-    
-    themeToggle.addEventListener('click', function () {
-        body.forEach(bd =>{
-            bd.classList.toggle('bg-white');
-        });
-        
-    });
-}
 darkMode();

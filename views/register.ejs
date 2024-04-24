@@ -25,19 +25,12 @@
                     every voice is heard and valued.
                 </p>
             </div>
-            <form action="/register" id="right" method="post" enctype="multipart/form-data">
+            <!-- <form action="/register" id="right" method="post" enctype="multipart/form-data"> -->
+            <form action="/register" id="right" method="post">
                 <h1 id="login">Register</h1>
                 <% if (error && error.length> 0) { %>
                 <p class="error"><%= error %></p>
                 <% } %>
-                <div class="input">
-                    <div class="client-info profile">
-                        <input type="file" id="profile" name="profile" required class="client-info">
-                        <span>
-                            <i class="ri-account-circle-fill"></i>
-                        </span>
-                    </div>
-                </div>
                 <div class="input">
                     <input type="text" id="fullname" name="fullname" required class="client-info">
                     <label for="fullname">Full Name</label>
@@ -61,16 +54,21 @@
                     </div>
                 </div>
                 <div class="input">
-                    <input type="submit" class="client-info submit anim" value="Submit">
+                    <input type="submit" class="client-info submit " value="Submit">
                 </div>
                 <div class="input">
-                    <button class="specialButton register anim">Already have an account? <label><a href="/app">Login</a></label></button>
+                    <button class="specialButton register ">Already have an account? <label><a href="/app">Login</a></label></button>
                 </div>
             </form>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="/javascripts/index.js"></script>
+    <script>
+        document.querySelector('.profile').addEventListener('click', function () {
+            document.querySelector('#profile').click();
+        })
+    </script>
 </body>
 
 </html>

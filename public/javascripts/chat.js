@@ -21,6 +21,28 @@ function animation() {
         duration: 2
     });
 }
+function searchAnimation() {
+    var area = document.getElementById('searchArea');
+    gsap.set(area, {
+        scale: 0
+    });
+    document.querySelector('#open').addEventListener('click', () => {
+        console.log('openSearchArea');
+        gsap.to(area, {
+            duration: 1.2,
+            scale: 1
+        });
+    });
+    document.querySelector('#close').addEventListener('click', () => {
+        console.log('closeSearchArea');
+        gsap.to(area, {
+            duration: 0.8,
+            scale: 0
+        });
+    });
+
+}
+searchAnimation();
 function closeSearchArea() {
     // gsap.from('.searchArea', {
     //     x: 0,

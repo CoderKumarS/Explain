@@ -84,10 +84,9 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
     .populate(["posts", "projects"]);
   res.render('profile', { user });
 });
-router.post("/register", upload.single("profile"), (req, res) => {
-  const profile = req.file.filename;
+router.post("/register",(req, res) => {
   const { username, email, fullname } = req.body;
-  const userData = new userModel({ profile, username, email, fullname })
+  const userData = new userModel({ username, email, fullname })
 
   userModel.register(userData, req.body.password, (err) => {
     if (err) {
@@ -95,7 +94,7 @@ router.post("/register", upload.single("profile"), (req, res) => {
       res.redirect("/loginapp");
     } else {
       passport.authenticate("local", {
-        successRedirect: "/profile",
+        successRedirect: "/edit",
         failureRedirect: "/loginapp",
         failureFlash: true
       })(req, res);

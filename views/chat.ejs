@@ -11,8 +11,8 @@
 
 <body>
     <!-- Search area that will be shown when the input is clicked -->
-    <div id="searchArea" style="display: none;">
-        <h1 onclick="closeSearchArea()"><i class="fa-solid fa-xmark"></i></h1>
+    <div id="searchArea">
+        <h1 id="close"><i class="fa-solid fa-xmark"></i></h1>
         <input id="searchInput" type="text" placeholder="Type to search..." oninput="searchChat()">
         <div id="searchResults"></div>
     </div>
@@ -37,7 +37,7 @@
                 <i class="fa-solid fa-user-plus"></i>
 
             </div>
-            <div class="SearchInputHolder" onclick="showSearchArea()">
+            <div class="SearchInputHolder" id="open">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <p class="searchInput">Search For Chat...</p>
                 <hr>

@@ -6,7 +6,7 @@ function animation() {
             scale: 0,
             opacity: 0
         })
-        var tag =(document.querySelector("#container").offsetWidth>1000)?'#left':'#right';
+        var tag = (document.querySelector("#container").offsetWidth > 1000) ? '#left' : '#right';
         tl.from(tag, {
             x: -500,
             opacity: 0,
@@ -14,7 +14,7 @@ function animation() {
             ease: 'expo.inOut'
         })
         tl.from('#right h1, #right p', {
-            duration: 1,
+            duration: 0.5,
             scaleY: 0,
             ease: 'expo.inOut',
             delay: 0.5,
@@ -31,6 +31,11 @@ function animation() {
     });
 }
 animation();
-document.querySelector('.profile').addEventListener('click', function () {
-    document.querySelector('#profile').click();
-})
+const specialButtons = document.querySelectorAll('.specialButton');
+console.log(specialButtons);
+specialButtons.forEach(function (button) {
+    const link = button.querySelector('a');
+    button.addEventListener('click', function (event) {
+        link.click();
+    });
+});
