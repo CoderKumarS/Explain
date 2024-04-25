@@ -33,11 +33,12 @@ body {
 #log button{
   width: max-content;
   z-index: 10;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 #log button a{
   text-decoration: none;
   color: white;
+  padding: 0.9rem;
 }
 .container {
   max-width: 700px;
@@ -81,6 +82,7 @@ body {
   display: none;
   padding: 20px 0;
   padding-bottom: 0;
+  overflow-y: scroll;
 }
 
 .tab-content.active {
@@ -264,4 +266,13 @@ button:hover {
   border-radius: 4px;
   color: #fff;
   display: block;
+}
+.features{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 0px;
 }

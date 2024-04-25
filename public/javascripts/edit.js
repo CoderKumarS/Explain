@@ -69,9 +69,9 @@ function submitContact(){
                         <input class="input" type="text" name="contact" value="${data.data}">
                         <label for="contact">Contact: </label>
                     </div>`;
-        skillValue.value = "";
-        document.querySelector('.contact-group').appendChild = clutter;
-    });
+                    document.querySelector('.contact-group').appendChild = clutter;
+                    contactValue.value = "";
+                });
 }
 function submitSkill(){
     const skillValue = document.getElementById('skillInput').value;

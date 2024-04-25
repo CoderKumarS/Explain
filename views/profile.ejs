@@ -81,13 +81,11 @@
                 </form>
             </div>
             <div id="contact" class="tab-content">
-                <%if (user.contacts.length>0){%>
                     <% user.contacts.forEach(function (contact){%>
                     <div class="form-group">
                         <span class="input"><%= contact %></span>
                     </div>
                     <%})%>
-                <%}%>
             </div>
             <div id="posts" class="tab-content form-group">
                 <form action="/upload" method="post">
@@ -121,27 +119,25 @@
     </div>
     <div class="container p-0 w-75">
         <div class="row m-1 justify-content-center form-group">
-            <div id="skills" class="tab-content">
-                <%if (user.skills.length>0){%>
+            <h5 class="Question">Skills</h5>
+            <div id="skills" class="features">
                     <% user.skills.forEach(function (skill){%>
                     <div class="form-group">
                         <span class="input"><%= skill %></span>
                     </div>
                     <%})%>
-                <%}%>
             </div>
         </div>
     </div>
     <div class="container p-0 w-75">
         <div class="row m-1 justify-content-center form-group">
-            <div id="languages" class="tab-content">
-                <%if (user.languages.length>0){%>
-                    <% user.languages.forEach(function (language){%>
-                    <div class="form-group">
-                        <span class="input"><%= language %></span>
-                    </div>
-                    <%})%>
-                <%}%>
+            <h5 class="Question">Languages</h5>
+            <div id="languages" class="features">
+                <% user.languages.forEach(function (language){%>
+                <div class="form-group">
+                    <span class="input"><%= language %></span>
+                </div>
+                <%})%>
             </div>
         </div>
     </div>
