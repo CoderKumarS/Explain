@@ -251,3 +251,17 @@ button:hover {
   color: #000000;
   font-size: 3vh;
 }
+.form-group{
+  margin:1rem;
+  flex-shrink: unset !important;
+}
+.form-group span{
+  font-family: var(--font);
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(15px) saturate(130%);
+  padding: 10px;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+}

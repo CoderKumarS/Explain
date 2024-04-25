@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+const MongoUri = process.env.MONGO_URI;
 const plm = require('passport-local-mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/Explain")
+mongoose.connect(MongoUri)
 .then(()=>console.log("Connected to database"))
 .catch((err)=>console.log(err));
 
@@ -40,6 +42,18 @@ const userSchema= new mongoose.Schema({
   bio:{
     type:String
   },
+  course:{
+    type:String
+  },
+  skills:[{
+    type:String
+  }],
+  languages:[{
+    type:String
+  }],
+  contacts:[{
+    type:String
+  }],
 })
 userSchema.plugin(plm);
 

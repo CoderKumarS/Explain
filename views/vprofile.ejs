@@ -24,7 +24,6 @@
             </div>
         </div>
         <div class="text-center" >
-            <a href="/edit" id="edit"><i class="ri-pencil-line"></i></a>
             <h1>
                 <%= user.fullname%>
             </h1>
@@ -37,9 +36,12 @@
                 <li data-target="intro" class="active">Intro</li>
                 <li data-target="project">Projects</li>
                 <li data-target="contact">Contact</li>
-                <li data-target="posts">Upload</li>
             </ul>
             <div id="intro" class="tab-content active">
+                <h5 class="Question">Introduction</h5>
+                <p>
+                    <%= user.course%>
+                </p>
                 <p>
                     <%= user.bio%>
                 </p>
@@ -51,6 +53,7 @@
         <div class="row justify-content-center">
             <div id="project" class="tab-content form-group">
                 <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+                    <h5 class="Question">Projects</h5>
                     <% user.projects.forEach(function (project){%>
                         <div class="col">
                             <div class="card">
@@ -73,14 +76,9 @@
                         </div>
                         <%})%>
                 </div>
-                <form action="/projectUpload" method="post" enctype="multipart/form-data" class="mt-4">
-                    <input type="text" name="projectDescription" placeholder="Description Of the Project.">
-                    <input type="text" name="projectName" placeholder="Name Of the Project.">
-                    <input type="file" name="projectPic">
-                    <button type="submit">Submit</button>
-                </form>
             </div>
             <div id="contact" class="tab-content">
+                <h5 class="Question">Contact</h5>
                 <%if (user.contacts.length>0){%>
                     <% user.contacts.forEach(function (contact){%>
                     <div class="form-group">
@@ -88,13 +86,6 @@
                     </div>
                     <%})%>
                 <%}%>
-            </div>
-            <div id="posts" class="tab-content form-group">
-                <form action="/upload" method="post">
-                    <input type="text" name="topic" placeholder="Topic">
-                    <input type="text" name="question" placeholder="Question">
-                    <button type="submit">Submit</button>
-                </form>
             </div>
         </div>
     </div>
@@ -117,32 +108,6 @@
                     </div>
                 </div>
                 <%})%>
-        </div>
-    </div>
-    <div class="container p-0 w-75">
-        <div class="row m-1 justify-content-center form-group">
-            <div id="skills" class="tab-content">
-                <%if (user.skills.length>0){%>
-                    <% user.skills.forEach(function (skill){%>
-                    <div class="form-group">
-                        <span class="input"><%= skill %></span>
-                    </div>
-                    <%})%>
-                <%}%>
-            </div>
-        </div>
-    </div>
-    <div class="container p-0 w-75">
-        <div class="row m-1 justify-content-center form-group">
-            <div id="languages" class="tab-content">
-                <%if (user.languages.length>0){%>
-                    <% user.languages.forEach(function (language){%>
-                    <div class="form-group">
-                        <span class="input"><%= language %></span>
-                    </div>
-                    <%})%>
-                <%}%>
-            </div>
         </div>
     </div>
     <script src="/javascripts/profile.js"></script>

@@ -58,8 +58,8 @@ function searchChat() {
     let clut = "";
     var input = document.getElementById('searchInput');
     axios.get(`/search/${input.value}`).then(function (data) {
+        clut = ""; 
         data.data.forEach(function (elem) {
-            clut = "";
             clut += `<a href="/users/${elem._id}">
                     <div>
                         <div>

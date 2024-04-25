@@ -127,6 +127,24 @@ router.post('/update', isLoggedIn, async function (req, res) {
   await user.save();
   res.redirect("/profile");
 });
+router.put('/contact/:contact', isLoggedIn, async function (req, res) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  user.contacts.push(req.params.contact);
+  await user.save();
+  res.json(req.params.contact);
+});
+router.put('/skill/:skill', isLoggedIn, async function (req, res) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  user.skills.push(req.params.skill);
+  await user.save();
+  res.json(req.params.skill);
+});
+router.put('/language/:language', isLoggedIn, async function (req, res) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  user.languages.push(req.params.language);
+  await user.save();
+  res.json(req.params.language);
+});
 router.get("/search/:username", async (req, res) => {
   const regex = new RegExp(`^${req.params.username}`, 'i');
   const users = await userModel.find({ fullname: regex });
@@ -135,7 +153,7 @@ router.get("/search/:username", async (req, res) => {
 router.get("/users/:username", async (req, res) => {
   const user = await userModel.findOne({ _id: req.params.username })
     .populate(["posts", "projects"]);
-  res.render('profile', { user });
+  res.render('vprofile', { user });
 })
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/profile",

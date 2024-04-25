@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express'); // Import the express module
 var path = require('path');
+require('dotenv').config(); 
 var cookieParser = require('cookie-parser'); // Import the cookie-parser module
 var logger = require('morgan'); 
 const expressSession = require('express-session'); // Import the express-session module

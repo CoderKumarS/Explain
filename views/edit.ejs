@@ -10,41 +10,101 @@
 </head>
 
 <body>
+    <a href="/profile" class="profile navbar-brand ri-arrow-left-line" id="p1"> Profile</a>
+    <nav class="navbar">
+        <a href="/profile" class="navbar-brand ri-arrow-left-line" id="p2"> Profile</a>
+        <a href="#" class="navbar-brand">Edit</a>
+        <button class="navbar-toggler" id="navbarToggler">
+            <i class="ri-menu-line"></i>
+        </button>
+        <div class="navbar-nav" id="navbarNav">
+            <a href="#" class="nav-link" data-target="about-group">About</a>
+            <a href="#" class="nav-link" data-target="contact-group">Contact</a>
+            <a href="#" class="nav-link" data-target="skill-group">Skill</a>
+            <a href="#" class="nav-link" data-target="language-group">Language</a>
+        </div>
+    </nav>
     <div class="container">
         <h1>Edit Profile</h1>
-        <div class="form-group img-tag" id="pic">
-            <img src="/images/uploads/<%= user.profile%>">
+        <div class="img-tag" id="pic">
+            <% if(user.profile != undefined) { %>
+                <img src="/images/uploads/<%=user.profile%>" alt="profile pic" class="img">
+                <% }else{ %>
+                    <span class="img"><i class="ri-user-fill"></i></span>
+                <%}%>
         </div>
         <form action="/updatePic" class="form-group" hidden id="picUpload" method="post" enctype="multipart/form-data">
             <label for="image">Profile Image</label>
             <input type="file" id="image" name="image">
         </form>
-        <form action="/update" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="fullname" value="<%= user.fullname %>">
+        <form action="/update" method="POST" class="form">
+            <div class="about-group group active">
+                <div class="form-group">
+                    <input class="input" type="text" id="name" name="fullname" value="<%= user.fullname %>">
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-group">
+                    <input class="input" type="text" id="course" name="course" value="<%= user.course%>">
+                    <label for="course">Course</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="bio" name="bio"><%= user.bio %></textarea>
+                    <label for="bio">Bio</label>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" value="<%= user.username %>">
+            <div class="contact-group group">
+                <%if (user.contacts.length>0){%>
+                    <% user.contacts.forEach(function (contact){%>
+                    <div class="form-group">
+                        <input class="input" type="text" name="contact" value="<%= contact %>">
+                        <label for="contact">Contact</label>
+                    </div>
+                    <%})%>
+                <%}%>
+                <div class="form-group add">
+                    <input class="input" type="text" name="contact" placeholder="Enter Contact To Add" id="contactInput">
+                    <label for="skill">Contact:</label>
+                    <button type="button" onclick="submitContact()">Add</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="bio">Bio</label>
-                <textarea id="bio" name="bio"><%= user.bio %></textarea>
+            <div class="skill-group group">
+                <%if (user.skills.length>0){%>
+                    <% user.skills.forEach(function (skill){%>
+                    <div class="form-group">
+                        <input class="input" type="text" name="skill" value="<%= skill %>">
+                        <label for="skill">Skill:</label>
+                    </div>
+                    <%})%>
+                <%}%>
+                <div class="form-group add">
+                    <input class="input" type="text" name="skill" placeholder="Enter Skill To Add" id="skillInput">
+                    <label for="skill">Skill:</label>
+                    <button type="button" onclick="submitSkill()">Add</button>
+                </div>
+            </div>
+            <div class="language-group group">
+                <%if (user.languages.length>0){%>
+                    <% user.languages.forEach(function (language){%>
+                    <div class="form-group">
+                        <input class="input" type="text" name="language" value="<%= language %>">
+                        <label for="language">Language:</label>
+                    </div>
+                    <%})%>
+                <%}%>
+                <div class="form-group add">
+                    <input class="input" type="text" name="language" placeholder="Enter Language To Add" id="languageInput">
+                    <label for="language">Language:</label>
+                    <button type="button" onclick="submitLanguage()">Add</button>
+                </div>
             </div>
             <button type="submit">Save Changes</button>
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"
+    integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script>
-        gsap.from(".container", { opacity: 0, duration: 1, y: -50, ease: "power2.out" });
-        document.querySelector("#pic img").addEventListener("click", function () {
-            document.getElementById("image").click();
-        });
-        document.querySelector("#picUpload input").addEventListener("change", function () {
-            document.getElementById("picUpload").submit();
-        });
-    </script>
+    <script src="/javascripts/edit.js"></script>
 </body>
 
 </html>

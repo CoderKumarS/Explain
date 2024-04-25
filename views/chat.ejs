@@ -23,7 +23,7 @@
 
         <li><a class="active" href="/chat"><i class="fa-regular fa-comment-dots"></i></a></li>
         <li><a href="/chat"><i class="fa-solid fa-phone"></i></a></li>
-        <li><a href="/chat"><i class="fa-solid fa-gear"></i></a></li>
+        <li><a href="/edit"><i class="fa-solid fa-gear"></i></a></li>
         <li><a href="/chat"><i class="fa-solid fa-trash-can"></i></a></li>
         <li><a href="/chat"><i class="fa-regular fa-star"></i></a></li>
         <li><a href="/profile"><i class="fa-solid fa-address-book"></i></a>
@@ -33,9 +33,6 @@
         <div class="sideNav2">
             <div class="SideNavhead">
                 <h2>Chats</h2>
-                <i class="fa-solid fa-filter"></i>
-                <i class="fa-solid fa-user-plus"></i>
-
             </div>
             <div class="SearchInputHolder" id="open">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -45,7 +42,7 @@
 
             <% posts.reverse().forEach(function (post){%>
                 <li class="group" onclick="submitForm('<%=post.postText%>')">
-                    <div class="avatar overflow-hidden p-0"><img src="/images/uploads/<%=post.user.profile%>" alt=""
+                    <div class="avatar overflow-hidden p-0"><img src="/images/uploads/<%=post.user.profile%>" alt="profile"
                             class="w-100 h-100 object-fit-cover"></div>
                     <p class="GroupName">
                         <%=post.postText%>
