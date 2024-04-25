@@ -359,8 +359,6 @@ section {
     text-align: right;
     align-items: center;
     padding: 2px 0px;
-
-
 }
 
 .messageContent {
@@ -372,9 +370,6 @@ section {
     padding-right: 5px;
     font-weight: 300;
     color: #c3c1c1;
-
-
-
 }
 
 .you .messageDetails .messageTime {
@@ -398,6 +393,9 @@ section {
     border-radius: 20px;
     width: fit-content;
     background-color: #036666;
+    position: sticky;
+    top: 0%;
+    z-index: 10;
 }
 
 .w-100 {

@@ -133,8 +133,14 @@ function darkMode() {
     themeToggle.addEventListener('click', function () {
         body.forEach(bd => {
             bd.classList.toggle('bg-white');
+            if(bd.classList.contains('text-white')){
+                bd.classList.add('text-gray-900');
+                bd.classList.remove('text-white');
+            }else{
+                bd.classList.add('text-white');
+                bd.classList.remove('text-gray-900');
+            }
         });
-
     });
 }
 locomotiveAnimation();

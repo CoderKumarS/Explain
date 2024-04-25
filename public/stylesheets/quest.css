@@ -1,0 +1,16 @@
+*{
+    transition-duration: unset !important;
+}
+body{
+    grid-template-rows: unset !important;
+}
+main{
+    grid-template-columns: unset ;
+}
+#back{
+    text-decoration: none;
+    margin: 4vh 5vh 0rem;
+    place-self: baseline;
+    font-size: 4vh;
+    color: white;
+}

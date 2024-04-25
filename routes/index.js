@@ -7,6 +7,7 @@ const commentModel = require('./comment');
 const passport = require('passport');
 const upload = require('./multer');
 const localStrategy = require("passport-local");
+const comment = require('./comment');
 passport.use(new localStrategy(userModel.authenticate()));
 router.get('/', function (req, res, next) {
   res.render('main');
@@ -19,6 +20,17 @@ router.get('/chat', isLoggedIn, async function (req, res, next) {
   const posts = await postModel.find()
     .populate("user")
   res.render('chat', { user, posts });
+});
+router.get('/quest/:url', isLoggedIn, async function (req, res, next) {
+  try {
+      const post = await postModel.findById(req.params.url);
+      const user = await userModel.findOne({ posts: post._id });
+      const comments = await commentModel.find({ question: post._id }).populate("user");
+      res.render('quest',{ post, comments, user });
+    } catch (error) {
+      console.error('Error fetching chat:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 router.get('/chat/:url', isLoggedIn, async function (req, res, next) {
   try {

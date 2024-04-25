@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatting Page</title>
+    <link rel='stylesheet' href='/stylesheets/chat.css' />
+    <link rel='stylesheet' href='/stylesheets/quest.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <a href="/profile" id="back"><i class="fa-solid fa-arrow-left"></i> Profile</a>
+    <main>
+        <section class="Chat">
+            <div class="ChatHead">
+                <li class="group">
+                    <div class="avatar overflow-hidden" style="padding: 0;">
+                        <img class="object-fit-cover p-0" src="/images/uploads/<%= user.profile %>" alt="profile">
+                    </div>
+                    <p class="GroupName" id="postId"><%= post.postText %></p>
+                </li>
+            </div>
+            <div class="MessageContainer">
+                <div class="messageSeperator"><%= post.question %></div>
+                <% comments.forEach(function (comm) { %>
+                    <% const formatTime = (date) => {
+                        return date.toLocaleTimeString('en-US', { hour12: false });
+                    }; %>
+                    <% var type = (comm.user._id.equals(user._id)) ? "me" : "you"; %>
+                    <div class="message <%= type %>">
+                        <p class="messageContent"><%= comm.commentText %></p>
+                        <div class="messageDetails">
+                            <div class="messageTime"><%= formatTime(new Date(comm.createdAt)) %></div>
+                            <i>@<%= comm.user.username %></i>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <form id="MessageForm" action="">
+                <input type="text" id="MessageInput" placeholder="Enter Comments" name="comment" autocomplete="off" />
+                <button type="submit" class="Send"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+            <p id="username" style="display: none;"><%= user.username %></p>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="/javascripts/quest.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+
+</html>
