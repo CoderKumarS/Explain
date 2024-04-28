@@ -1,21 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
+
 <body>
-    <h1>Reset your password</h1>
-    <h2>Hello, <%= user.username%></h2>
-    <p>Email: <%= user.email%></p>
-    <form action="/reset/<%=user._id%>" method="post">
-        <% if(error.length>0) { %>
-            <p class="error"><%= error %></p>
-            <% } %>
-        <input type="password" name="password" placeholder="Enter new password">
-        <input type="password" name="confirm" placeholder="Confirm new password">
-        <button type="submit">Reset</button>
-    </form>
+  <input type="radio" id="resetForm" name="formToggle" checked>
+  <div class="wrapper" id="resetFormContent">
+      <div id="container">
+          <div id="left">
+              <h1 id="welcome">Reset your password</h1>
+              <h2 id="lorem">Hello, <%= user.username%></h2>
+              <p id="lorem">Email: <%= user.email%></p>
+          </div>
+          <form id="right" action="/reset/<%=user._id%>" method="post">
+              <h1 id="login">Reset</h1>
+              <% if(error.length>0) { %>
+              <p class="error"><%= error %></p>
+              <% } %>
+              <div class="input">
+                  <input type="password" name="password" required class="client-info">
+                  <label for="password" id="password">Password</label>
+              </div>
+              <div class="input">
+                  <input type="password" name="confirm" required class="client-info">
+                  <label for="confirm" id="password">Confirm Password</label>
+              </div>
+              <div class="input">
+                  <input type="submit" class="client-info submit" value="Reset">
+              </div>
+              <div class="input">
+                  <button class="specialButton register">Don't have an account?
+                      <label><a href="/loginapp">Register</a></label>
+                  </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="/javascripts/index.js"></script>
 </body>
 </html>

@@ -27,7 +27,8 @@ body {
 
 #loginForm:checked~#loginFormContent,
 #registerForm:checked~#registerFormContent,
-#forgotForm:checked~#forgotFormContent {
+#forgotForm:checked~#forgotFormContent,
+#resetForm:checked~#resetFormContent {
   display: block;
 }
 
@@ -76,7 +77,9 @@ input[type="radio"] {
   width: 95%;
   height: 96%;
   border-radius: 10px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #left {
@@ -91,7 +94,10 @@ input[type="radio"] {
   margin: 20px;
   text-shadow: var(--box-shadow);
 }
-
+#lorem:nth-child(2){
+  margin-bottom: 0px;
+  font-size: 2.5vh;
+}
 #welcome {
   font-size: 75px;
   font-weight: 300;
@@ -229,7 +235,7 @@ label {
   border: solid var(--forgot-color) 1px;
 }
 
-#forgot label a{
+#forgot label a {
   color: var(--forgot-color);
   text-decoration: none;
 }
@@ -237,7 +243,7 @@ label {
 #forgot:hover {
   background-color: var(--forgot-color);
 
-  label a{
+  label a {
     color: white;
   }
 }
@@ -252,11 +258,11 @@ button>label {
 @media (max-height: 850px) {
 
   #login {
-    padding: 20% 0% 10%;
+    padding: 10% 0%;
   }
 
   #welcome {
-    margin-top: 240px;
+    margin-top: 15vh;
     font-size: 60px;
   }
 

@@ -40,9 +40,13 @@ specialButtons.forEach(function (button) {
 });
 const success = document.querySelector('.error');
 if(success.textContent === 'Password reset successfully') {
-    success.style.backgroundColor= "rgba(0, 255, 0, 0.2)";
-    success.style.border= "1px solid #70b870";
-    success.style.color= "green";
+    gsap.to(success, {
+        backgroundColor: 'rgba(0, 255, 0, 0.2)',
+        borderColor: '#70b870',
+        color: 'green',
+        duration: 1,
+        ease: 'power2.out'
+    });
 }
 if (success) {
     setTimeout(function () {
