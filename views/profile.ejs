@@ -52,26 +52,26 @@
             <div id="project" class="tab-content form-group">
                 <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
                     <% user.projects.forEach(function (project){%>
-                        <div class="col">
-                            <div class="card">
-                                <img src="/images/uploads/<%=project.image%>" class="card-img-top"
-                                    alt="<%=project.projectName%>">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <%=project.projectName%>
-                                    </h5>
-                                    <p class="card-text">
-                                        <%=project.projectDescription%>
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-body-secondary">
-                                        <%=project.createdAt%>
-                                    </small>
-                                </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="/images/uploads/<%=project.image%>" class="card-img-top"
+                                alt="<%=project.projectName%>">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%=project.projectName%>
+                                </h5>
+                                <p class="card-text">
+                                    <%=project.projectDescription%>
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">
+                                    <%=project.createdAt%>
+                                </small>
                             </div>
                         </div>
-                        <%})%>
+                    </div>
+                    <%})%>
                 </div>
                 <form action="/projectUpload" method="post" enctype="multipart/form-data" class="mt-4">
                     <input type="text" name="projectDescription" placeholder="Description Of the Project.">
@@ -81,11 +81,11 @@
                 </form>
             </div>
             <div id="contact" class="tab-content">
-                    <% user.contacts.forEach(function (contact){%>
-                    <div class="form-group">
-                        <span class="input"><%= contact %></span>
-                    </div>
-                    <%})%>
+                <% user.contacts.forEach(function (contact){%>
+                <div class="form-group">
+                    <span class="input"><%= contact %></span>
+                </div>
+                <%})%>
             </div>
             <div id="posts" class="tab-content form-group">
                 <form action="/upload" method="post">
@@ -100,32 +100,32 @@
         <div class="row m-1 justify-content-center form-group">
             <h5 class="Question">Questions</h5>
             <% user.posts.forEach(function (post){%>
-                <div class="card p-0 mb-2">
-                    <h5 class="card-header">
-                        <%=post.postText%>
+            <div class="card p-0 mb-2">
+                <h5 class="card-header">
+                    <%=post.postText%>
+                </h5>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%=post.question%>
                     </h5>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%=post.question%>
-                        </h5>
-                        <p class="card-text">
-                            <%=post.createdAt%>
-                        </p>
-                        <a href="/quest/<%=post._id%>" class="btn btn-primary">Replies</a>
-                    </div>
+                    <p class="card-text">
+                        <%=post.createdAt%>
+                    </p>
+                    <a href="/quest/<%=post._id%>" class="btn btn-primary">Replies</a>
                 </div>
-                <%})%>
+            </div>
+            <%})%>
         </div>
     </div>
     <div class="container p-0 w-75">
         <div class="row m-1 justify-content-center form-group">
             <h5 class="Question">Skills</h5>
             <div id="skills" class="features">
-                    <% user.skills.forEach(function (skill){%>
-                    <div class="form-group">
-                        <span class="input"><%= skill %></span>
-                    </div>
-                    <%})%>
+                <% user.skills.forEach(function (skill){%>
+                <div class="form-group">
+                    <span class="input"><%= skill %></span>
+                </div>
+                <%})%>
             </div>
         </div>
     </div>

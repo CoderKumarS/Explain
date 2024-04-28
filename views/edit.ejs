@@ -28,10 +28,10 @@
         <h1>Edit Profile</h1>
         <div class="img-tag" id="pic">
             <% if(user.profile != undefined) { %>
-                <img src="/images/uploads/<%=user.profile%>" alt="profile pic" class="img">
-                <% }else{ %>
-                    <span class="img"><i class="ri-user-fill"></i></span>
-                <%}%>
+            <img src="/images/uploads/<%=user.profile%>" alt="profile pic" class="img">
+            <% }else{ %>
+            <span class="img"><i class="ri-user-fill"></i></span>
+            <%}%>
         </div>
         <form action="/updatePic" class="form-group" hidden id="picUpload" method="post" enctype="multipart/form-data">
             <label for="image">Profile Image</label>

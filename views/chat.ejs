@@ -10,15 +10,11 @@
 </head>
 
 <body>
-    <!-- Search area that will be shown when the input is clicked -->
     <div id="searchArea">
         <h1 id="close"><i class="fa-solid fa-xmark"></i></h1>
         <input id="searchInput" type="text" placeholder="Type to search..." oninput="searchChat()">
         <div id="searchResults"></div>
     </div>
-
-    <!-- Results area where the search results will be displayed -->
-
     <div class="sideNav1">
 
         <li><a class="active" href="/chat"><i class="fa-regular fa-comment-dots"></i></a></li>
@@ -41,17 +37,17 @@
             </div>
 
             <% posts.reverse().forEach(function (post){%>
-                <li class="group" onclick="submitForm('<%=post.postText%>')">
-                    <div class="avatar overflow-hidden p-0"><img src="/images/uploads/<%=post.user.profile%>" alt="profile"
-                            class="w-100 h-100 object-fit-cover"></div>
-                    <p class="GroupName">
-                        <%=post.postText%>
-                    </p>
-                    <p class="GroupDescrp">
-                        <%=post.question%>
-                    </p>
-                </li>
-                <%})%>
+            <li class="group" onclick="submitForm('<%=post.postText%>')">
+                <div class="avatar overflow-hidden p-0"><img src="/images/uploads/<%=post.user.profile%>" alt="profile"
+                        class="w-100 h-100 object-fit-cover"></div>
+                <p class="GroupName">
+                    <%=post.postText%>
+                </p>
+                <p class="GroupDescrp">
+                    <%=post.question%>
+                </p>
+            </li>
+            <%})%>
         </div>
         <section class="Chat">
             <div class="ChatHead">
