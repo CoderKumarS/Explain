@@ -36,11 +36,16 @@ input[type="radio"] {
 }
 
 .error {
-  font-weight: 500;
+  font-weight: 800;
   color: red;
   text-transform: capitalize;
-  margin: 10px 0px;
+  padding: 10px 0px;
   text-align: center;
+  border: 1px solid #fd7f7f;
+  width: 90%;
+  margin: auto;
+  border-radius: 10px;
+  background: rgba(255, 0, 0, 0.2);
 }
 
 :root {

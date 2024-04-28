@@ -8,6 +8,7 @@ const passport = require('passport');
 const upload = require('./multer');
 const localStrategy = require("passport-local");
 const comment = require('./comment');
+const e = require('connect-flash');
 passport.use(new localStrategy(userModel.authenticate()));
 router.get('/', function (req, res, next) {
   res.render('main');
@@ -23,14 +24,14 @@ router.get('/chat', isLoggedIn, async function (req, res, next) {
 });
 router.get('/quest/:url', isLoggedIn, async function (req, res, next) {
   try {
-      const post = await postModel.findById(req.params.url);
-      const user = await userModel.findOne({ posts: post._id });
-      const comments = await commentModel.find({ question: post._id }).populate("user");
-      res.render('quest',{ post, comments, user });
-    } catch (error) {
-      console.error('Error fetching chat:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
+    const post = await postModel.findById(req.params.url);
+    const user = await userModel.findOne({ posts: post._id });
+    const comments = await commentModel.find({ question: post._id }).populate("user");
+    res.render('quest', { post, comments, user });
+  } catch (error) {
+    console.error('Error fetching chat:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 router.get('/chat/:url', isLoggedIn, async function (req, res, next) {
   try {
@@ -96,7 +97,7 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
     .populate(["posts", "projects"]);
   res.render('profile', { user });
 });
-router.post("/register",(req, res) => {
+router.post("/register", (req, res) => {
   const { username, email, fullname } = req.body;
   const userData = new userModel({ username, email, fullname })
 
@@ -123,46 +124,40 @@ router.get('/forgot', function (req, res, next) {
 });
 router.post('/forgot', async function (req, res, next) {
   const { username, email } = req.body;
-  const user = await userModel.findOne({ username: username, email: email }); 
-    if (!user) {
-      req.flash('error', 'User not found');
-      res.redirect('/forgot');
-    } else {
-      res.redirect(`/reset/${user._id}`);
-    }
-  });
-
+  const user = await userModel.findOne({ username: username, email: email });
+  if (!user) {
+    req.flash('error', 'User not found');
+    res.redirect('/forgot');
+  } else {
+    res.redirect(`/reset/${user._id}`);
+  }
+});
 router.get('/reset/:userId', async function (req, res, next) {
   const error = req.flash('error');
   const user = await userModel.findById(req.params.userId);
-  res.render('reset', { error, user});
+  res.render('reset', { error, user });
 });
 
-router.post('/reset/:user', function (req, res, next) {
+router.post('/reset/:user', async function (req, res, next) {
   const { password, confirm } = req.body;
   if (password !== confirm) {
     req.flash('error', 'Passwords do not match');
+    return res.redirect(`/reset/${req.params.user}`);
+  }
+  
+  try {
+    const user = await userModel.findById(req.params.user);
+    const u = await user.setPassword(password);
+    await user.save();
+    
+    req.flash('error', 'Password reset successfully');
+    res.redirect("/app");
+  } catch (err) {
+    req.flash('error', err.message);
     res.redirect(`/reset/${req.params.user}`);
-  } else {
-    userModel.findById(req.params.user, (err, user) => {
-      if (err) {
-        req.flash('error', err.message);
-        res.redirect(`/reset/${req.params.user}`);
-      } else {
-        user.password = password;
-        user.save((err) => {
-          if (err) {
-            req.flash('error', err.message);
-            res.redirect(`/reset/${req.params.user}`);
-          } else {
-            req.flash('success', 'Password reset successfully');
-            res.redirect('/loginapp');
-          }
-        });
-      }
-    });
   }
 });
+
 
 router.get('/edit', isLoggedIn, async function (req, res) {
   const user = await userModel.findOne({ username: req.session.passport.user });
@@ -175,7 +170,7 @@ router.post('/updatePic', isLoggedIn, upload.single("image"), async function (re
   res.redirect("/edit");
 });
 router.post('/update', isLoggedIn, async function (req, res) {
-  const user = await userModel.findOneAndUpdate({ username: req.session.passport.user },{ username: req.body.username, fullname: req.body.fullname, bio: req.body.bio }, { new: true });
+  const user = await userModel.findOneAndUpdate({ username: req.session.passport.user }, { username: req.body.username, fullname: req.body.fullname, bio: req.body.bio }, { new: true });
   await user.save();
   res.redirect("/profile");
 });

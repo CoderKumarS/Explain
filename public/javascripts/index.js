@@ -32,10 +32,28 @@ function animation() {
 }
 animation();
 const specialButtons = document.querySelectorAll('.specialButton');
-console.log(specialButtons);
 specialButtons.forEach(function (button) {
     const link = button.querySelector('a');
     button.addEventListener('click', function (event) {
         link.click();
     });
 });
+const success = document.querySelector('.error');
+if(success.textContent === 'Password reset successfully') {
+    success.style.backgroundColor= "rgba(0, 255, 0, 0.2)";
+    success.style.border= "1px solid #70b870";
+    success.style.color= "green";
+}
+if (success) {
+    setTimeout(function () {
+        gsap.to(success, {
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.out',
+            scaleY: 0,
+            onComplete: function () {
+                success.style.display = 'none';
+            }
+        });
+    }, 6000);
+}
