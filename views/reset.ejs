@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset</title>
+</head>
+<body>
+    <h1>Reset your password</h1>
+    <h2>Hello, <%= user.username%></h2>
+    <p>Email: <%= user.email%></p>
+    <form action="/reset/<%=user._id%>" method="post">
+        <% if(error.length>0) { %>
+            <p class="error"><%= error %></p>
+            <% } %>
+        <input type="password" name="password" placeholder="Enter new password">
+        <input type="password" name="confirm" placeholder="Confirm new password">
+        <button type="submit">Reset</button>
+    </form>
+</body>
+</html>

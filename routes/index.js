@@ -121,9 +121,49 @@ router.get('/forgot', function (req, res, next) {
   const error = req.flash('error');
   res.render('forgot', { error });
 });
-router.post('/forgot', function (req, res, next) {
-  res.render('forgot');
+router.post('/forgot', async function (req, res, next) {
+  const { username, email } = req.body;
+  const user = await userModel.findOne({ username: username, email: email }); 
+    if (!user) {
+      req.flash('error', 'User not found');
+      res.redirect('/forgot');
+    } else {
+      res.redirect(`/reset/${user._id}`);
+    }
+  });
+
+router.get('/reset/:userId', async function (req, res, next) {
+  const error = req.flash('error');
+  const user = await userModel.findById(req.params.userId);
+  res.render('reset', { error, user});
 });
+
+router.post('/reset/:user', function (req, res, next) {
+  const { password, confirm } = req.body;
+  if (password !== confirm) {
+    req.flash('error', 'Passwords do not match');
+    res.redirect(`/reset/${req.params.user}`);
+  } else {
+    userModel.findById(req.params.user, (err, user) => {
+      if (err) {
+        req.flash('error', err.message);
+        res.redirect(`/reset/${req.params.user}`);
+      } else {
+        user.password = password;
+        user.save((err) => {
+          if (err) {
+            req.flash('error', err.message);
+            res.redirect(`/reset/${req.params.user}`);
+          } else {
+            req.flash('success', 'Password reset successfully');
+            res.redirect('/loginapp');
+          }
+        });
+      }
+    });
+  }
+});
+
 router.get('/edit', isLoggedIn, async function (req, res) {
   const user = await userModel.findOne({ username: req.session.passport.user });
   res.render('edit', { user });
